@@ -1,12 +1,54 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\Mattis.lfrnc\\Desktop\\Code\\SameApi\\",
-  "Documents": [],
+  "WorkspaceRootPath": "C:\\Users\\lefra\\Documents\\GitHub\\Same\\SameApi\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{1D3795CB-39F8-4FFD-B023-22CF0EEC1140}|SameApi.Db\\SameApi.Db.csproj|c:\\users\\lefra\\documents\\github\\same\\sameapi\\sameapi.db\\unitofwork\\isameapiunitofwork.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1D3795CB-39F8-4FFD-B023-22CF0EEC1140}|SameApi.Db\\SameApi.Db.csproj|solutionrelative:sameapi.db\\unitofwork\\isameapiunitofwork.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1D3795CB-39F8-4FFD-B023-22CF0EEC1140}|SameApi.Db\\SameApi.Db.csproj|c:\\users\\lefra\\documents\\github\\same\\sameapi\\sameapi.db\\dbcontexts\\sameapidbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1D3795CB-39F8-4FFD-B023-22CF0EEC1140}|SameApi.Db\\SameApi.Db.csproj|solutionrelative:sameapi.db\\dbcontexts\\sameapidbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": []
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "SameApiDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\lefra\\Documents\\GitHub\\Same\\SameApi\\SameApi.Db\\DbContexts\\SameApiDbContext.cs",
+              "RelativeDocumentMoniker": "SameApi.Db\\DbContexts\\SameApiDbContext.cs",
+              "ToolTip": "C:\\Users\\lefra\\Documents\\GitHub\\Same\\SameApi\\SameApi.Db\\DbContexts\\SameApiDbContext.cs",
+              "RelativeToolTip": "SameApi.Db\\DbContexts\\SameApiDbContext.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAATAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-05T16:29:50.778Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ISameApiUnitOfWork.cs",
+              "DocumentMoniker": "C:\\Users\\lefra\\Documents\\GitHub\\Same\\SameApi\\SameApi.Db\\UnitOfWork\\ISameApiUnitOfWork.cs",
+              "RelativeDocumentMoniker": "SameApi.Db\\UnitOfWork\\ISameApiUnitOfWork.cs",
+              "ToolTip": "C:\\Users\\lefra\\Documents\\GitHub\\Same\\SameApi\\SameApi.Db\\UnitOfWork\\ISameApiUnitOfWork.cs",
+              "RelativeToolTip": "SameApi.Db\\UnitOfWork\\ISameApiUnitOfWork.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-05T16:29:41.2Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
     }
   ]
 }
