@@ -4,6 +4,6 @@ namespace SameApi.Db.DbContexts
 {
     public interface ISameApitDbContext : IBaseDbContext
     {
-        //put user dao
+        //put dao
     }
 }

@@ -1,17 +1,16 @@
-﻿using ApiTest.Db.Repository.Implementation;
-using SameApi.Db.DbContexts;
+﻿using SameApi.Db.DbContexts;
 
 namespace SameApi.Db.UnitOfWork
 {
     public class SameApiUnitOfWork : ISameApiUnitOfWork
     {
-        public IApiTestDbContext Context  { get; }
-        public IPersonRepository PersonRepository { get; }
+        public ISameApitDbContext Context  { get; }
+        //public IRepository repository { get; }
 
-        public SameApiUnitOfWork(ApiTestDbContext context, IPersonRepository personRepository)
+        public SameApiUnitOfWork(ISameApitDbContext context/* IRepository repository*/)
         {
             this.Context = context;
-            this.PersonRepository = personRepository;
+            //this.repository = personRepository;
         }
 
         public async Task<int> SaveChangesAsync()
