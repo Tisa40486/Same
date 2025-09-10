@@ -4,7 +4,6 @@ A RESTful Web API for a Same, built with **ASP.NET Core** and **Entity Framework
 This API allows clients to perform full CRUD operations on forum entities such as **Users**, **Threads**, **Posts**, and **Comments**.
 
 ---
-
 ## 🚀 Features
 
 - Full CRUD for:
@@ -19,23 +18,40 @@ This API allows clients to perform full CRUD operations on forum entities such a
 - Basic error handling and validation
 
 ---
+## Database Model
+
+You can find the detailed MLD diagram [here](./MLD.md).
 
 ## 🧱 Entities Overview
 
 ### User
-- `Id`, `Username`, `Email`, `PasswordHash`, `CreatedAt`
+- `id`, `isadmin`, `age`, `pseudo`, `email`, `password`, `number_follow`, `createAt`, `id_gender_fk`, `id_school_fk`, `id_post_fk` 
 
-### Thread
-- `Id`, `Title`, `AuthorId`, `CreatedAt`
+### Gender
+- `id`, `gender`
+
+### Tags
+- `Id`, `createAt`, `tag_required`, `tag_optional`
+### TAG_REQUIRED
+- `Id`, `tag_required`
+  
+### TAG_OPTIONAL
+- `Id`, `tag_optional`
+  
+### SCHOOL
+- `Id`, `name`, `profession`
+
+### PROFESSION
+- `Id`, `name`
+
 
 ### Post
-- `Id`, `ThreadId`, `AuthorId`, `Content`, `CreatedAt`
+- `Id`, `ThreadId`, `id_user`, `Content`, `CreatedAt`
 
 ### Comment
-- `Id`, `PostId`, `AuthorId`, `Content`, `CreatedAt`
+- `Id`, `PostId`, `id_user`, `title`, `Content`, `CreatedAt`
 
 ---
-
 ## 🛠️ Technologies Used
 
 - ASP.NET Core 6 / 7
@@ -44,8 +60,6 @@ This API allows clients to perform full CRUD operations on forum entities such a
 - SQL Server / SQLite
 - Swagger (Swashbuckle)
 - AutoMapper
-
----
 
 ## 📁 Project Structure
 
