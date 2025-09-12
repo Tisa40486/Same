@@ -1,16 +1,15 @@
 # Build
 bin/
 obj/
-out/
+[Bb]uild/
+[Ll]og/
+
 
 # User-specific files
 *.user
 *.userosscache
 *.suo
 *.sln.docstates
-
-# Visual Studio cache
-.vs/
 
 # Rider cache
 .idea/
@@ -52,3 +51,23 @@ desktop.ini
 TestResult*/
 *.coverage
 *.coveragexml
+
+# Visual Studio
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# NuGet
+*.nupkg
+*.snupkg
+*.nuspec
+*.ncrunchsolution*
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# Others
+*.cache
+*.db
