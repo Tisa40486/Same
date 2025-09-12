@@ -12,10 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\SameApi.Data\SameApi.Data.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Repository\Implementation\" />
+    <ProjectReference Include="..\SameApi.Model\SameApi.Model.csproj" />
   </ItemGroup>
 
 </Project>
