@@ -8,11 +8,17 @@
 
   <ItemGroup>
     <Folder Include="User\Command\" />
-    <Folder Include="User\Query\" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="15.0.1" />
+    <PackageReference Include="MediatR" Version="13.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.9" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SameApi.Db\SameApi.Db.csproj" />
+    <ProjectReference Include="..\SameApi.Dto\SameApi.Dto.csproj" />
   </ItemGroup>
 
 </Project>
