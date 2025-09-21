@@ -12,7 +12,7 @@ using SameApi.Db.DbContexts;
 namespace SameApi.Db.Migrations
 {
     [DbContext(typeof(SameApiDbContext))]
-    [Migration("20250921103910_1.0.0")]
+    [Migration("20250921114954_1.0.0")]
     partial class _100
     {
         /// <inheritdoc />

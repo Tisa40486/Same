@@ -20,9 +20,9 @@ namespace SameApi.App.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<UserResponse>> GetAllAsync()
+        public async Task<ActionResult<IEnumerable<UserResponse>>> GetAllAsync()
         {
-            var result = await _mediator.Send(new GetByIdUserQuery());
+            var result = await _mediator.Send(new GetAllUserQuery());
             return Ok(result);
         }
     }

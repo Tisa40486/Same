@@ -4,7 +4,7 @@ using SameApi.Business;
 using SameApi.Db;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using Swashbuckle.AspNetCore.SwaggerUI;
-
+using AutoMapper;
 var builder = WebApplication.CreateBuilder(args);
 
 // -------------------- CORS --------------------
@@ -40,7 +40,7 @@ builder.Services.AddSwaggerGen(c =>
 // -------------------- Services --------------------
 builder.Services.AddSameApibContext(builder.Configuration);
 builder.Services.RegisterSameApiDbContainer();
-builder.Services.AddAutoMapper(typeof(SameApiProfile).Assembly);
+builder.Services.AddAutoMapper(cfg => { }, typeof(SameApiProfile).Assembly); 
 builder.Services.AddMediatR(x => x.RegisterServicesFromAssemblies(typeof(SameApiProfile).Assembly));
 
 var app = builder.Build();
