@@ -9,9 +9,9 @@ namespace SameApi.Business.User.Command
     {
         public int Id { get; set; }
     }
-    public class GetPersonByIdQueryHandler : IRequestHandler<GetPersonByIdQuery, PersonResponse>
+    public class GetPersonByIdQueryHandler : IRequestHandler<GetByIdUserQuery, UserResponse>
     {
-        readonly  ISameApiUnitOfWork _apiTestUnitOfWork;
+        readonly ISameApiUnitOfWork _apiTestUnitOfWork;
         readonly IMapper _mapper;
 
         public GetPersonByIdQueryHandler(
@@ -22,13 +22,13 @@ namespace SameApi.Business.User.Command
         }
 
 
-        public async Task<PersonResponse> Handle(GetPersonByIdQuery request, CancellationToken cancellationToken)
+        public async Task<UserResponse> Handle(GetByIdUserQuery request, CancellationToken cancellationToken)
         {
-            var data = await _apiTestUnitOfWork.PersonRepository.GetByIdAsync(request.Id);
+            var data = await _apiTestUnitOfWork.UserRepository.GetByIdAsync(request.Id);
 
-            var result = _mapper.Map<PersonResponse>(data);
+            var result = _mapper.Map<UserResponse>(data);
             return result;
         }
-    }
 
+    }
 }

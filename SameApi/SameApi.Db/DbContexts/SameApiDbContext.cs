@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SameApi.Data.DbContexts;
+using SameApi.Model;
 
 namespace SameApi.Db.DbContexts
 {
@@ -8,7 +9,7 @@ namespace SameApi.Db.DbContexts
         public SameApiDbContext(DbContextOptions<SameApiDbContext> options) : base(options)
         { 
         }
-
+        public DbSet<UserDao> Users { get; set; }
         //put dbset
     }
 }

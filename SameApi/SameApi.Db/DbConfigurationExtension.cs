@@ -1,13 +1,13 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using SameApi.Db.DbContexts;
 using Microsoft.EntityFrameworkCore;
 
-namespace ApiTest.Db
+namespace SameApi.Db
 {
     public static class DbConfigurationExtension
     {
-        public static void AddApiTestDbContext(this IServiceCollection services, IConfiguration configuration)
+        public static void AddSameApibContext(this IServiceCollection services, IConfiguration configuration)
         {
             var connectionString = configuration.GetConnectionString("DefaultConnection");
 
