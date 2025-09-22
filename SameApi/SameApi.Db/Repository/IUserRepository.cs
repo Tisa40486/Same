@@ -4,7 +4,7 @@ using SameApi.Model;
 
 namespace SameApi.Db.Repository
 {
-    public interface IUserRepository : IBaseRepository<ISameApitDbContext, UserDao>
+    public interface IUserRepository : IBaseRepository<ISameApiDbContext, UserDao>
     {
     }
 }

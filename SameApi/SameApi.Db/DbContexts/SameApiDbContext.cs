@@ -1,15 +1,17 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SameApi.Data.DbContexts;
 using SameApi.Model;
+using SameApi.Model.LKP;
 
 namespace SameApi.Db.DbContexts
 {
-    public class SameApiDbContext : BaseDbContext, ISameApitDbContext 
+    public class SameApiDbContext : BaseDbContext, ISameApiDbContext 
     {
         public SameApiDbContext(DbContextOptions<SameApiDbContext> options) : base(options)
         { 
         }
         public DbSet<UserDao> Users { get; set; }
-        //put dbset
+        public DbSet<LKP_GenderDao> Genders { get; set; }
+
     }
 }

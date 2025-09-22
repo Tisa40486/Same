@@ -5,9 +5,8 @@ using MediatR;
 
 namespace SameApi.Business.User.Command
 {
-    public class GetAllUserQuery: IRequest<IEnumerable<UserResponse>>
+    public class GetAllUserQuery : IRequest<IEnumerable<UserResponse>>
     {
-        public int Id { get; set; }
     }
     public class GetAllUserQueryHandler : IRequestHandler<GetAllUserQuery, IEnumerable<UserResponse>>
     {

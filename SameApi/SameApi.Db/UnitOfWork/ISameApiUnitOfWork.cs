@@ -5,8 +5,9 @@ namespace SameApi.Db.UnitOfWork
 {
     public interface ISameApiUnitOfWork
     {
-        ISameApitDbContext Context { get; }
+        ISameApiDbContext Context { get; }
         IUserRepository UserRepository { get; }
+        IGenderRepository GenderRepository { get; }
         Task<int> SaveChangesAsync();
         
     }

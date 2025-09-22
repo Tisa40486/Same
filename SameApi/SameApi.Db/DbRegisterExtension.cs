@@ -10,9 +10,10 @@ namespace SameApi.Db
     {
         public static void RegisterSameApiDbContainer(this IServiceCollection services)
         {
-            services.AddScoped<ISameApitDbContext, SameApiDbContext>();
+            services.AddScoped<ISameApiDbContext, SameApiDbContext>();
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<ISameApiUnitOfWork, SameApiUnitOfWork>();
+            services.AddScoped<IGenderRepository, GenderRepository>();
         }
     }
 }

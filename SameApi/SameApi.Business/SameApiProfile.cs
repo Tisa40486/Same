@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using SameApi.Dto;
 using SameApi.Model;
+using SameApi.Model.LKP;
 
 namespace SameApi.Business
 {
@@ -9,7 +10,8 @@ namespace SameApi.Business
         public SameApiProfile() 
         {
             CreateMap<UserDao, UserResponse>();
-            //CreateMap<UserInput, UserDao>();
+            CreateMap<GenderInput, LKP_GenderDao>();
+            CreateMap<LKP_GenderDao, GenderResponse>();
 
         }
     }

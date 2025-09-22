@@ -1,18 +1,19 @@
 ﻿using SameApi.Db.DbContexts;
 using SameApi.Db.Repository;
-using SameApi.Db.Repository.Implementation;
 
 namespace SameApi.Db.UnitOfWork
 {
     public class SameApiUnitOfWork : ISameApiUnitOfWork
     {
-        public ISameApitDbContext Context  { get; }
+        public ISameApiDbContext Context  { get; }
         public IUserRepository UserRepository { get; }
+        public IGenderRepository GenderRepository { get; }
 
-        public SameApiUnitOfWork(ISameApitDbContext context , IUserRepository repository)
+        public SameApiUnitOfWork(ISameApiDbContext context , IUserRepository repository, IGenderRepository genderRepository)
         {
-            this.Context = context;
-            this.UserRepository = repository;
+            Context = context;
+            UserRepository = repository;
+            GenderRepository = genderRepository;
         }
 
         public async Task<int> SaveChangesAsync()

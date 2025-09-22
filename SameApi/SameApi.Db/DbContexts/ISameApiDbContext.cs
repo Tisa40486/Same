@@ -2,8 +2,8 @@
 
 namespace SameApi.Db.DbContexts
 {
-    public interface ISameApitDbContext : IBaseDbContext
+    public interface ISameApiDbContext : IBaseDbContext
     {
-        //put dao
+        
     }
 }

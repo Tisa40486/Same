@@ -7,7 +7,7 @@ using SameApi.Dto;
 namespace SameApi.App.Controllers
 {
     [ApiController]
-    [Route("api/person")]
+    [Route("api/user")]
     public class UserController : ControllerBase
     {
         private readonly IMediator _mediator;
