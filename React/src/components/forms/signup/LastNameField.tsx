@@ -8,14 +8,34 @@ export default function LastNameField({ value, onChange }: LastNameFieldProps)
     // const [error, setError] = useState('');
     const handleBlur = () =>
     {
-        if (value.trim() == null || value.trim() == "") {
-            console.log("Last name is required")
+        const trimmedValue = value.trim();
+
+        // Check if empty first
+        if (trimmedValue === "") {
+            console.log("Last name is required");
+            return;
         }
-        if (value.trim().length == 50) {
-            console.log("You cannot input more chars (max name length = 50)")
+
+        // Collect all validation errors
+        const errors: string[] = [];
+
+        if (trimmedValue.length < 2 || trimmedValue.length > 49) {
+            if (trimmedValue.length === 20) {
+                errors.push("You can't input more char for you last name (50 is the max)");
+            } else {
+                errors.push('Last name must have between 2 and 50 characters');
+            }
         }
+
         if (!/^[a-zA-Z]+$/.test(value) && !(value.trim() == null || value.trim() == "")) {
-            console.log("Last Name can only contain letters")
+            errors.push("Last name can only contain letters")
+        }
+
+        // Log results
+        if (errors.length === 0) {
+            console.log("Last name is valid");
+        } else {
+            errors.forEach(error => console.log(error));
         }
     }
 
@@ -23,7 +43,6 @@ export default function LastNameField({ value, onChange }: LastNameFieldProps)
     {
         onChange(e.target.value);
         console.clear();
-        // setError(''); // Clear error when user types
     };
 
     return (
@@ -37,7 +56,6 @@ export default function LastNameField({ value, onChange }: LastNameFieldProps)
                 className={"border-2"}
                 maxLength={50}
             />
-            {/*{error && <p>{error}</p>}*/}
         </div>
     );
 }
