@@ -14,12 +14,12 @@ const reservedWords = [
 
 const specialCharsRegex = /[^a-zA-Z0-9_-]/;
 
-interface PseudoFieldProps {
+interface UsernameFieldProps {
     value: string;
     onChange: (value: string) => void;
 }
 
-export default function PseudoField({ value, onChange }: PseudoFieldProps)
+export default function Username({ value, onChange }: UsernameFieldProps)
 {
     const handleBlur = () =>
     {
@@ -78,7 +78,7 @@ export default function PseudoField({ value, onChange }: PseudoFieldProps)
 
     return (
         <div>
-            <label>Pseudo</label>
+            <label>Username</label>
             <input
                 type="text"
                 value={value}
