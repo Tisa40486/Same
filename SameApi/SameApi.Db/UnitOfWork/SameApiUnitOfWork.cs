@@ -3,13 +3,13 @@ using SameApi.Db.Repository;
 
 namespace SameApi.Db.UnitOfWork
 {
-    public class SameApiUnitOfWork : ISameApiUnitOfWork
+    public class SameApiUnitOfWork : IApiSameUnitOfWork
     {
-        public ISameApiDbContext Context  { get; }
+        public IApiSameDbContext Context  { get; }
         public IUserRepository UserRepository { get; }
         public IGenderRepository GenderRepository { get; }
 
-        public SameApiUnitOfWork(ISameApiDbContext context , IUserRepository repository, IGenderRepository genderRepository)
+        public SameApiUnitOfWork(IApiSameDbContext context , IUserRepository repository, IGenderRepository genderRepository)
         {
             Context = context;
             UserRepository = repository;

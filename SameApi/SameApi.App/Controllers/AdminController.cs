@@ -17,14 +17,14 @@ namespace SameApi.App.Controllers
             _mediator = mediator;
         }
         
-        [HttpGet]
+        [HttpGet("/Gender")]
         public async Task<ActionResult<IEnumerable<GenderResponse>>> GetAllAsync()
         {
             var result = await _mediator.Send(new GetAllGenderQuery());
             return Ok(result);
         }
 
-        [HttpPost]
+        [HttpPost("/CreateGender")]
         public async Task CreateGenderAsync([FromBody] CreateGenderCommand command)
         {
             await _mediator.Send(command);

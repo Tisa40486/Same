@@ -9,10 +9,10 @@ namespace SameApi.Business
     {
         public SameApiProfile() 
         {
+            CreateMap<UserInput, UserDao>();
             CreateMap<UserDao, UserResponse>();
             CreateMap<GenderInput, LKP_GenderDao>();
             CreateMap<LKP_GenderDao, GenderResponse>();
-
         }
     }
 }

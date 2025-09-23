@@ -9,11 +9,11 @@ namespace SameApi.Business.Admin.Query
     {
         public class GetAllGenderQueryHandler : IRequestHandler<GetAllGenderQuery, IEnumerable<GenderResponse>>
         {
-            readonly ISameApiUnitOfWork _uow;
+            readonly IApiSameUnitOfWork _uow;
             readonly IMapper _mapper;
 
             public GetAllGenderQueryHandler(
-                ISameApiUnitOfWork ISameApiUnitOfWork, IMapper mapper)
+                IApiSameUnitOfWork ISameApiUnitOfWork, IMapper mapper)
             {
                 _uow = ISameApiUnitOfWork;
                 _mapper = mapper;

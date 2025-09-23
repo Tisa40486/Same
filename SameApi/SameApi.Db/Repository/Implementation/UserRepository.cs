@@ -4,9 +4,9 @@ using SameApi.Model;
 
 namespace SameApi.Db.Repository.Implementation
 {
-    class UserRepository : BaseRepository<ISameApiDbContext, UserDao>, IUserRepository
+    class UserRepository : BaseRepository<IApiSameDbContext, UserDao>, IUserRepository
     {
-        public UserRepository(ISameApiDbContext context) : base(context)
+        public UserRepository(IApiSameDbContext context) : base(context)
         {
         }
     }

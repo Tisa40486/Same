@@ -10,11 +10,11 @@ namespace SameApi.Business.User.Command
     }
     public class GetAllUserQueryHandler : IRequestHandler<GetAllUserQuery, IEnumerable<UserResponse>>
     {
-        readonly ISameApiUnitOfWork _apiTestUnitOfWork;
+        readonly IApiSameUnitOfWork _apiTestUnitOfWork;
         readonly IMapper _mapper;
 
         public GetAllUserQueryHandler(
-            ISameApiUnitOfWork apiTestUnitOfWork, IMapper mapper)
+            IApiSameUnitOfWork apiTestUnitOfWork, IMapper mapper)
         {
             _apiTestUnitOfWork = apiTestUnitOfWork;
             _mapper = mapper;

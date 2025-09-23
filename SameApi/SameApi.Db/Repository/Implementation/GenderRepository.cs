@@ -4,11 +4,11 @@ using SameApi.Model.LKP;
 
 namespace SameApi.Db.Repository.Implementation
 {
-    public class GenderRepository : BaseRepository<ISameApiDbContext, LKP_GenderDao>, IGenderRepository
+    public class GenderRepository : BaseRepository<IApiSameDbContext, LKP_GenderDao>, IGenderRepository
     {
-        private readonly ISameApiDbContext _dbContext;
+        private readonly IApiSameDbContext _dbContext;
 
-        public GenderRepository(ISameApiDbContext dbContext): base(dbContext)
+        public GenderRepository(IApiSameDbContext dbContext): base(dbContext)
         {
             _dbContext = dbContext;
         }

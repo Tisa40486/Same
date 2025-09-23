@@ -12,9 +12,9 @@ namespace SameApi.Business.Admin.Command
         public class CreateGenderCommandHandler : IRequestHandler<CreateGenderCommand>
         {
             private readonly IMapper _mapper;
-            private readonly ISameApiUnitOfWork _uow;
+            private readonly IApiSameUnitOfWork _uow;
 
-            public CreateGenderCommandHandler(IMapper mapper, ISameApiUnitOfWork uow)
+            public CreateGenderCommandHandler(IMapper mapper, IApiSameUnitOfWork uow)
             {
                 _mapper = mapper;
                 _uow = uow;

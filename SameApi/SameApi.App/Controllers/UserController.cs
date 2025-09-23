@@ -19,11 +19,32 @@ namespace SameApi.App.Controllers
             _mapper = mapper;
         }
 
-        [HttpGet]
+        [HttpGet("/GetAll")]
         public async Task<ActionResult<IEnumerable<UserResponse>>> GetAllAsync()
         {
             var result = await _mediator.Send(new GetAllUserQuery());
             return Ok(result);
         }
+
+        [HttpPost]
+        public async Task<IActionResult> CreateUserAsync([FromBody] CreateUserCommand command)
+        {
+            await _mediator.Send(command);
+            return Ok();
+        }
+
+        [HttpDelete("/User")]
+        public async Task<IActionResult> DeleteUserAsync([FromQuery] int id)
+        {
+            await _mediator.Send(new DeleteUserCommand { Id = id});
+            return Ok();
+        }
+
+        [HttpPut("/Update")]
+        public async Task<IActionResult> UpdateUserAsync([FromBody] UpdateUserCommand command)
+        {
+            var result = await _mediator.Send(command);
+            return Ok(result);
+        }   
     }
 }

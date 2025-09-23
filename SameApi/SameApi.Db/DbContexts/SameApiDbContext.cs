@@ -5,7 +5,7 @@ using SameApi.Model.LKP;
 
 namespace SameApi.Db.DbContexts
 {
-    public class SameApiDbContext : BaseDbContext, ISameApiDbContext 
+    public class SameApiDbContext : BaseDbContext, IApiSameDbContext 
     {
         public SameApiDbContext(DbContextOptions<SameApiDbContext> options) : base(options)
         { 

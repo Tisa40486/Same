@@ -2,7 +2,7 @@
 
 namespace SameApi.Db.DbContexts
 {
-    public interface ISameApiDbContext : IBaseDbContext
+    public interface IApiSameDbContext : IBaseDbContext
     {
         
     }

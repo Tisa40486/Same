@@ -4,7 +4,7 @@ using SameApi.Model.LKP;
 
 namespace SameApi.Db.Repository
 {
-    public interface IGenderRepository : IBaseRepository<ISameApiDbContext, LKP_GenderDao>
+    public interface IGenderRepository : IBaseRepository<IApiSameDbContext, LKP_GenderDao>
     {
         
         
