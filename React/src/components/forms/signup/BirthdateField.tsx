@@ -1,4 +1,4 @@
-interface DateFieldProps {
+interface BirthdateFieldProps {
     value: { month: string; day: string; year: string };
     onChange: (value: { month: string; day: string; year: string }) => void;
     label?: string;
@@ -35,7 +35,7 @@ const generateYears = (): number[] => {
     return years.reverse();
 };
 
-export default function DateField({ value, onChange, label = "Date of Birth" }: DateFieldProps) {
+export default function BirthdateField({ value, onChange, label = "Date of Birth" }: BirthdateFieldProps) {
     const handleBlur = () => {
         const { month, day, year } = value;
 

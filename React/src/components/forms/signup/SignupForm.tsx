@@ -1,4 +1,5 @@
 import { useState } from 'react';
+// import { useForm } from 'react-hook-form'
 import Username from "./Username.tsx";
 import EmailField from "./EmailField.tsx";
 import FirstNameField from "./FirstNameField.tsx";
@@ -7,33 +8,51 @@ import BirthdateField from "./BirthdateField.tsx";
 import PasswordFields from "./PasswordFields.tsx";
 
 export default function SignupForm() {
+    // const form = useForm()
+    // const { handleSubmit } = form
+
     const [username, setUsername] = useState('');
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
-    const [birthdate, setBirthdate] = useState('');
+    const [birthdate, setBirthdate] = useState({ month: '', day: '', year: '' });
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
 
     return (
-        <>
-            <h2>SignupForm</h2>
-            <Username value={username} onChange={setUsername} />
-            <EmailField value={email} onChange={setEmail} />
-            <FirstNameField value={firstName} onChange={setFirstName} />
-            <LastNameField value={lastName} onChange={setLastName} />
-            <BirthdateField value={birthdate} onChange={setBirthdate} />
-            <PasswordFields
-                passwordValue={password}
-                confirmValue={confirmPassword}
-                onPasswordChange={setPassword}
-                onConfirmChange={setConfirmPassword}
-                username={username}
-                firstName={firstName}
-                lastName={lastName}
-                email={email}
-                birthdate={birthdate}
-            />
-        </>
+        <div className={"glass-form"}>
+            <div className="glass-filter"></div>
+            <div className="glass-overlay"></div>
+            <div className="glass-specular"></div>
+
+            <div className={"glass-content"} aria-live="polite">
+                <div
+                    className={"form-container register"}
+                    aria-label={"Register form"}
+                >
+                    <h3>Register</h3>
+                    <form id="register-form" className={"form-grid"}>
+                        <Username value={username} onChange={setUsername}/>
+                        <EmailField value={email} onChange={setEmail}/>
+                        <FirstNameField value={firstName} onChange={setFirstName}/>
+                        <LastNameField value={lastName} onChange={setLastName}/>
+                        <BirthdateField value={birthdate} onChange={setBirthdate}/>
+                        <PasswordFields
+                            passwordValue={password}
+                            confirmValue={confirmPassword}
+                            onPasswordChange={setPassword}
+                            onConfirmChange={setConfirmPassword}
+                            username={username}
+                            firstName={firstName}
+                            lastName={lastName}
+                            email={email}
+                            birthdate={birthdate}
+                        />
+                        <button type="submit">Submit</button>
+                    </form>
+                </div>
+            </div>
+
+        </div>
     );
 }

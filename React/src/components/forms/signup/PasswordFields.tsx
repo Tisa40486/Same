@@ -18,7 +18,7 @@ interface PasswordFieldsProps {
     firstName?: string;
     lastName?: string;
     email?: string;
-    birthdate?: string; // Format: YYYY-MM-DD or any date format
+    birthdate?: { month: string; day: string; year: string };
 }
 
 export default function PasswordFields({
@@ -30,7 +30,7 @@ export default function PasswordFields({
                                            firstName = '',
                                            lastName = '',
                                            email = '',
-                                           birthdate = ''
+                                           birthdate = { month: '', day: '', year: '' }
                                        }: PasswordFieldsProps)
 {
     const checkConsecutiveRepeated = (password: string): boolean =>
@@ -78,18 +78,12 @@ export default function PasswordFields({
                 violations.push("email address");
             }
         }
-        if (birthdate && birthdate.length >= 4) {
-            // Check for various date formats
-            const dateNumbers = birthdate.replace(/[^0-9]/g, '');
-            if (dateNumbers.length >= 4) {
-                // Check for year, month, day in various combinations
-                const year = dateNumbers.substring(0, 4);
-                const month = dateNumbers.substring(4, 6);
-                const day = dateNumbers.substring(6, 8);
-
+        if (birthdate && (birthdate.year || birthdate.month || birthdate.day)) {
+            const { year, month, day } = birthdate;
+            if (year && month && day) {
                 if (year && lowerPassword.includes(year)) violations.push("birthdate (year)");
-                if (month && month.length === 2 && lowerPassword.includes(month)) violations.push("birthdate (month)");
-                if (day && day.length === 2 && lowerPassword.includes(day)) violations.push("birthdate (day)");
+                if (month && lowerPassword.includes(month.padStart(2, '0'))) violations.push("birthdate (month)");
+                if (day && lowerPassword.includes(day.padStart(2, '0'))) violations.push("birthdate (day)");
             }
         }
 
