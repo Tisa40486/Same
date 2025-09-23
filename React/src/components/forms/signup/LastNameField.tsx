@@ -53,7 +53,6 @@ export default function LastNameField({ value, onChange }: LastNameFieldProps)
                 value={value}
                 onChange={handleChange}
                 onBlur={handleBlur}
-                className={"border-2"}
                 maxLength={50}
             />
         </div>

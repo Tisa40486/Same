@@ -125,14 +125,14 @@ export default function BirthdateField({ value, onChange, label = "Date of Birth
     };
 
     return (
-        <div>
+        <div id="birthdate-field">
             <label>{label}</label>
             <div style={{ display: 'flex', gap: '8px' }}>
                 <select
                     value={value.month}
                     onChange={handleMonthChange}
                     onBlur={handleBlur}
-                    className="border-2"
+                    id={"birthdate-month"} className={"dropdown"}
                 >
                     <option value="">Month</option>
                     {months.map(month => (
@@ -146,7 +146,7 @@ export default function BirthdateField({ value, onChange, label = "Date of Birth
                     value={value.day}
                     onChange={handleDayChange}
                     onBlur={handleBlur}
-                    className="border-2"
+                    id={"birthdate-month"} className={"dropdown"}
                 >
                     <option value="">Day</option>
                     {getDayOptions().map(day => (
@@ -160,7 +160,7 @@ export default function BirthdateField({ value, onChange, label = "Date of Birth
                     value={value.year}
                     onChange={handleYearChange}
                     onBlur={handleBlur}
-                    className="border-2"
+                    id={"birthdate-month"} className={"dropdown"}
                 >
                     <option value="">Year</option>
                     {generateYears().map(year => (

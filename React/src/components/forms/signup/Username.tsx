@@ -78,13 +78,15 @@ export default function Username({ value, onChange }: UsernameFieldProps)
 
     return (
         <div>
-            <label>Username</label>
+            <label className={""}>Username</label> {/*Hide label*/}
             <input
                 type="text"
+                name={"username"}
+                placeholder="Username"
+                required
                 value={value}
                 onChange={handleChange}
                 onBlur={handleBlur}
-                className={"border-2"}
                 maxLength={20}
             />
         </div>

@@ -195,7 +195,6 @@ export default function PasswordFields({
                     onChange={handlePasswordChange}
                     onBlur={handlePasswordBlur}
                     placeholder="Enter your password (min. 16 characters)"
-                    className={"border-2"}
                 />
             </div>
 
@@ -207,7 +206,6 @@ export default function PasswordFields({
                     onChange={handleConfirmChange}
                     onBlur={handleConfirmBlur}
                     placeholder="Confirm your password"
-                    className={"border-2"}
                 />
             </div>
         </div>

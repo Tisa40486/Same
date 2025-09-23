@@ -20,39 +20,24 @@ export default function SignupForm() {
     const [confirmPassword, setConfirmPassword] = useState('');
 
     return (
-        <div className={"glass-form"}>
-            <div className="glass-filter"></div>
-            <div className="glass-overlay"></div>
-            <div className="glass-specular"></div>
-
-            <div className={"glass-content"} aria-live="polite">
-                <div
-                    className={"form-container register"}
-                    aria-label={"Register form"}
-                >
-                    <h3>Register</h3>
-                    <form id="register-form" className={"form-grid"}>
-                        <Username value={username} onChange={setUsername}/>
-                        <EmailField value={email} onChange={setEmail}/>
-                        <FirstNameField value={firstName} onChange={setFirstName}/>
-                        <LastNameField value={lastName} onChange={setLastName}/>
-                        <BirthdateField value={birthdate} onChange={setBirthdate}/>
-                        <PasswordFields
-                            passwordValue={password}
-                            confirmValue={confirmPassword}
-                            onPasswordChange={setPassword}
-                            onConfirmChange={setConfirmPassword}
-                            username={username}
-                            firstName={firstName}
-                            lastName={lastName}
-                            email={email}
-                            birthdate={birthdate}
-                        />
-                        <button type="submit">Submit</button>
-                    </form>
-                </div>
-            </div>
-
-        </div>
+        <form className={""} method="post">
+            <Username value={username} onChange={setUsername}/>
+            <EmailField value={email} onChange={setEmail}/>
+            <FirstNameField value={firstName} onChange={setFirstName}/>
+            <LastNameField value={lastName} onChange={setLastName}/>
+            <BirthdateField value={birthdate} onChange={setBirthdate}/>
+            <PasswordFields
+                passwordValue={password}
+                confirmValue={confirmPassword}
+                onPasswordChange={setPassword}
+                onConfirmChange={setConfirmPassword}
+                username={username}
+                firstName={firstName}
+                lastName={lastName}
+                email={email}
+                birthdate={birthdate}
+            />
+            <button type="submit">Submit</button>
+        </form>
     );
 }

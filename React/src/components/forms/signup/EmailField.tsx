@@ -47,7 +47,6 @@ export default function EmailField({ value, onChange }: EmailFieldProps)
                 value={value}
                 onChange={handleChange}
                 onBlur={handleBlur}
-                className={"border-2"}
                 maxLength={50}
             />
         </div>
