@@ -49,11 +49,13 @@ export default function LastNameField({ value, onChange }: LastNameFieldProps)
         <div>
             <label>Last Name</label>
             <input
+                className={"field-input demi-input"}
                 type="text"
                 value={value}
                 onChange={handleChange}
                 onBlur={handleBlur}
                 maxLength={50}
+                placeholder={"Last Name"}
             />
         </div>
     );

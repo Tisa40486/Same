@@ -7,11 +7,11 @@ export default function SignupCard(){
             {/*<div className="glass-filter"></div>*/}
             {/*<div className="glass-overlay"></div>*/}
             {/*<div className="glass-specular"></div>*/}
-            <h3>Signup</h3>
+            <h3 className={"card-line card-title"}>Signup</h3>
             <SignupForm/>
             <span>
                 Already have an account?
-                <Link to="/login">Login</Link>
+                <Link className={"card-line"} to="/login"> <b>Login</b></Link>
             </span>
         </div>
     );

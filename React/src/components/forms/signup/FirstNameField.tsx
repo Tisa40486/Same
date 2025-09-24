@@ -54,6 +54,8 @@ export default function FirstNameField({ value, onChange }: FirstNameFieldProps)
                 onChange={handleChange}
                 onBlur={handleBlur}
                 maxLength={50}
+                placeholder={"First Name"}
+                className={"field-input demi-input"}
             />
         </div>
     );

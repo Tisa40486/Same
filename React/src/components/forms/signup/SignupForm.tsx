@@ -23,8 +23,10 @@ export default function SignupForm() {
         <form className={""} method="post">
             <Username value={username} onChange={setUsername}/>
             <EmailField value={email} onChange={setEmail}/>
-            <FirstNameField value={firstName} onChange={setFirstName}/>
-            <LastNameField value={lastName} onChange={setLastName}/>
+            <fieldset className={"card-line"}>
+                <FirstNameField value={firstName} onChange={setFirstName}/>
+                <LastNameField value={lastName} onChange={setLastName}/>
+            </fieldset>
             <BirthdateField value={birthdate} onChange={setBirthdate}/>
             <PasswordFields
                 passwordValue={password}
@@ -37,7 +39,7 @@ export default function SignupForm() {
                 email={email}
                 birthdate={birthdate}
             />
-            <button type="submit">Submit</button>
+            <button className={"card-line"} type="submit">Submit</button>
         </form>
     );
 }

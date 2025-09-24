@@ -77,7 +77,7 @@ export default function Username({ value, onChange }: UsernameFieldProps)
     };
 
     return (
-        <div>
+        <div className={"card-line"}>
             <label className={""}>Username</label> {/*Hide label*/}
             <input
                 type="text"
@@ -88,6 +88,7 @@ export default function Username({ value, onChange }: UsernameFieldProps)
                 onChange={handleChange}
                 onBlur={handleBlur}
                 maxLength={20}
+                className={"field-input"}
             />
         </div>
     );
