@@ -187,7 +187,7 @@ export default function PasswordFields({
 
     return (
         <>
-            <div className={"card-line"}>
+            <div className={"card-row"}>
                 <label>Password</label>
                 <input
                     type="password"
@@ -195,11 +195,11 @@ export default function PasswordFields({
                     onChange={handlePasswordChange}
                     onBlur={handlePasswordBlur}
                     placeholder="Enter your password (min. 16 characters)"
-                    className={"field-input"}
+                    className={"glass-input"}
                 />
             </div>
 
-            <div className={"card-line"}>
+            <div className={"card-row"}>
                 <label>Confirm Password</label>
                 <input
                     type="password"
@@ -207,7 +207,7 @@ export default function PasswordFields({
                     onChange={handleConfirmChange}
                     onBlur={handleConfirmBlur}
                     placeholder="Confirm your password"
-                    className={"field-input"}
+                    className={"glass-input"}
                 />
             </div>
         </>

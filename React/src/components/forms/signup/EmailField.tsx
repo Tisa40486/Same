@@ -40,7 +40,7 @@ export default function EmailField({ value, onChange }: EmailFieldProps)
     };
 
     return (
-        <div className={"card-line"}>
+        <div className={"card-row"}>
             <label>Email</label>
             <input
                 type="text"
@@ -49,7 +49,7 @@ export default function EmailField({ value, onChange }: EmailFieldProps)
                 onBlur={handleBlur}
                 maxLength={50}
                 placeholder={"Email"}
-                className={"field-input"}
+                className={"glass-input"}
             />
         </div>
     );

@@ -20,10 +20,10 @@ export default function SignupForm() {
     const [confirmPassword, setConfirmPassword] = useState('');
 
     return (
-        <form className={""} method="post">
+        <form method="post">
             <Username value={username} onChange={setUsername}/>
             <EmailField value={email} onChange={setEmail}/>
-            <fieldset className={"card-line"}>
+            <fieldset className={"card-multi-fields-row"}>
                 <FirstNameField value={firstName} onChange={setFirstName}/>
                 <LastNameField value={lastName} onChange={setLastName}/>
             </fieldset>
@@ -39,7 +39,7 @@ export default function SignupForm() {
                 email={email}
                 birthdate={birthdate}
             />
-            <button className={"card-line"} type="submit">Submit</button>
+            <button className={"glass-button card-row"} type="submit">Submit</button>
         </form>
     );
 }

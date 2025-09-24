@@ -4,10 +4,7 @@ import SignupForm from './SignupForm';
 export default function SignupCard(){
     return (
         <div className={"glass-card"}>
-            {/*<div className="glass-filter"></div>*/}
-            {/*<div className="glass-overlay"></div>*/}
-            {/*<div className="glass-specular"></div>*/}
-            <h3 className={"card-line card-title"}>Signup</h3>
+            <h1 className={"card-row"}>Sign Up</h1>
             <SignupForm/>
             <span>
                 Already have an account?

@@ -1,0 +1,393 @@
+
+/* ==========================================================================
+   MOBILE-FIRST CSS TEMPLATE - CLEANED GLASSMORPHISM DESIGN
+   Universal template with contradictions and duplications resolved
+   ========================================================================== */
+
+/* ==========================================================================
+   CSS RESET & BASE STYLES
+   ========================================================================== */
+
+/* Modern CSS Reset */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+}
+
+body {
+    margin: 0;
+    min-height: 100dvh;
+    display: grid;
+    place-items: center;
+    background: url('../assets/img/same-register-login-background.png') left top / cover no-repeat fixed;
+    backdrop-filter: blur(4px);
+    overflow: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: var(--color-text-white);
+}
+
+/* Remove default button styles */
+button {
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    font: inherit;
+}
+
+/* Remove default link styles */
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+/* Remove list styles */
+ul, ol {
+    list-style: none;
+}
+
+/* Images and media */
+img, video, iframe {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Form elements */
+input, textarea, select {
+    font: inherit;
+    border: none;
+    outline: none;
+}
+
+/* ==========================================================================
+   CSS CUSTOM PROPERTIES (CSS VARIABLES)
+   ========================================================================== */
+
+:root {
+    /* Glass Effect Colors */
+    --glass-bg: rgba(255, 255, 255, 0.20);
+    --glass-border: rgba(255, 255, 255, 0.20);
+    --glass-backdrop: blur(10px);
+
+    /* Colors */
+    --color-primary: #3498db;
+    --color-primary-dark: #2980b9;
+    --color-text-white: #ffffff;
+
+    /* Typography */
+    --font-size-xs: 0.78rem;    /* 14px */
+    --font-size-sm: 0.89rem;    /* 16px */
+    --font-size-base: 1rem;     /* 18px */
+    --font-size-lg: 1.22rem;    /* 22px */
+    --font-size-xl: 1.33rem;    /* 24px */
+    --font-size-2xl: 1.67rem;   /* 30px */
+    --font-size-3xl: 2.11rem;   /* 38px */
+    --font-size-4xl: 2.56rem;   /* 46px */
+
+    --font-weight-normal: 400;
+    --font-weight-medium: 500;
+    --font-weight-semibold: 600;
+    --font-weight-bold: 700;
+
+    --line-height-tight: 1.25;
+    --line-height-normal: 1.5;
+
+    /* Spacing */
+    --space-xs: 0.28rem;   /* 5px */
+    --space-sm: 0.56rem;   /* 10px */
+    --space-md: 1rem;      /* 18px */
+    --space-lg: 1.44rem;   /* 26px */
+    --space-xl: 2rem;      /* 36px */
+    --space-2xl: 3rem;     /* 54px */
+
+    /* Layout - Responsive containers */
+    --container-sm: 90vw;
+    --container-md: 80vw;
+    --container-lg: 70vw;
+    --container-xl: 60vw;
+
+    /* Input dimensions */
+    --input-width: min(37vh, 400px);      /* Responsive with fallback */
+    --input-width-half: min(17vh, 200px); /* Responsive with fallback */
+    --input-width-dropdown: min(11vh, 150px); /* Responsive with fallback */
+    --input-height: 45px;
+
+    /* Breakpoints (for reference) */
+    --breakpoint-sm: 640px;
+    --breakpoint-md: 768px;
+    --breakpoint-lg: 1024px;
+    --breakpoint-xl: 1280px;
+
+    /* Borders & Radius */
+    --border-radius-sm: 8px;
+    --border-radius-md: 9px;
+    --border-radius-lg: 20px;
+
+    /* Shadows */
+    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.07);
+    --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+
+    /* Transitions */
+    --transition-fast: 0.15s ease;
+    --transition-normal: 0.3s ease;
+
+    /* Z-index scale */
+    --z-modal: 1050;
+    --z-fixed: 1080;
+}
+
+/* ==========================================================================
+   UTILITY CLASSES
+   ========================================================================== */
+
+/* Screen reader only */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* Container classes - responsive */
+.container {
+    width: 100%;
+    padding: 0 var(--space-md);
+    margin: 0 auto;
+    max-width: var(--container-sm);
+}
+
+/* Flexbox utilities */
+.flex {
+    display: flex;
+}
+
+.flex-col {
+    flex-direction: column;
+}
+
+.items-center {
+    align-items: center;
+}
+
+.justify-center {
+    justify-content: center;
+}
+
+.justify-between {
+    justify-content: space-between;
+}
+
+.justify-around {
+    justify-content: space-around;
+}
+
+/* Text utilities */
+.text-center {
+    text-align: center;
+}
+
+/* ==========================================================================
+   MOBILE BASE STYLES (320px and up)
+   ========================================================================== */
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+    font-weight: var(--font-weight-semibold);
+    line-height: var(--line-height-tight);
+    margin-bottom: var(--space-md);
+}
+
+h1 { font-size: var(--font-size-2xl); }
+h2 { font-size: var(--font-size-xl); }
+h3 { font-size: var(--font-size-lg); }
+h4 { font-size: var(--font-size-base); }
+h5 { font-size: var(--font-size-sm); }
+h6 { font-size: var(--font-size-xs); }
+
+p {
+    margin-bottom: var(--space-md);
+    line-height: var(--line-height-normal);
+}
+
+/* Links */
+a {
+    color: var(--color-primary);
+    transition: color var(--transition-fast);
+}
+
+a:hover,
+a:focus {
+    color: var(--color-primary-dark);
+}
+
+/* ==========================================================================
+   GLASS CARD SYSTEM
+   ========================================================================== */
+
+.glass-card {
+    @extend .flex, .flex-col, .items-center;
+    border-radius: var(--border-radius-lg);
+    background-color: var(--glass-bg);
+    backdrop-filter: var(--glass-backdrop);
+    border: solid 1px var(--glass-border);
+    padding: var(--space-lg);
+    box-shadow: var(--shadow-lg);
+    width: 100%;
+}
+
+.card-row {
+    width: 100%;
+    margin-bottom: var(--space-md);
+}
+
+.card-multi-fields-row {
+  @extend .card-row, .flex, .justify-between;
+  justify-content: space-between !important;
+}
+
+.glass-dropdown-option {
+  color: black;
+  background-color: var(--glass-bg);
+  border: solid 1px var(--glass-border);
+}
+
+/* ==========================================================================
+   FORM SYSTEM
+   ========================================================================== */
+
+/* Hide labels */
+label {
+    display: none;
+}
+
+h1 {
+  text-align: center;
+}
+
+/* Shared glassmorphism input styling */
+.glass-input {
+    background-color: var(--glass-bg);
+    border: solid 1px var(--glass-border);
+    border-radius: var(--border-radius-md);
+    height: var(--input-height);
+    padding: 0 18px;
+    transition: all var(--transition-fast);
+    width: var(--input-width);
+}
+
+.glass-input:focus {
+    background-color: rgba(255, 255, 255, 0.3);
+    border-color: rgba(255, 255, 255, 0.5);
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.1);
+}
+
+.glass-input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* Half-width inputs */
+.half-input {
+  width: var(--input-width-half);
+}
+
+/* Dropdown styling */
+.glass-dropdown {
+  @extend .glass-input;
+    //padding-right: 35px;
+    transition: all var(--transition-fast);
+    width: var(--input-width-dropdown);
+    //appearance: none;
+    //background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%23ffffff' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+    //background-position: right 12px center;
+    //background-repeat: no-repeat;
+    //background-size: 16px;
+}
+
+/* Submit button styling */
+.glass-button {
+    background-color: var(--glass-bg);
+    border: solid 1px var(--glass-border);
+    border-radius: var(--border-radius-md);
+    height: var(--input-height);
+    transition: all var(--transition-fast);
+    width: 100%;
+    max-width: var(--input-width);
+    font-weight: var(--font-weight-medium);
+    cursor: pointer;
+    font-size: var(--font-size-base);
+    padding: 0; /* Override input padding for buttons */
+}
+
+.glass-button:hover,
+.glass-button:focus {
+    background-color: rgba(255, 255, 255, 0.3);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+}
+
+.glass-button:active {
+    transform: translateY(0);
+}
+
+/* ==========================================================================
+   GRID SYSTEM - Mobile First
+   ========================================================================== */
+
+.grid {
+    display: grid;
+    gap: var(--space-md);
+    grid-template-columns: 1fr;
+}
+
+/* ==========================================================================
+   RESPONSIVE BREAKPOINTS
+   ========================================================================== */
+
+/* TABLET (768px and up) */
+@media (min-width: 768px) {
+    .container {
+        max-width: var(--container-md);
+    }
+
+    .grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* DESKTOP (1024px and up) */
+@media (min-width: 1024px) {
+    .container {
+        max-width: var(--container-lg);
+    }
+
+    .grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* LARGE DESKTOP (1280px and up) */
+@media (min-width: 1280px) {
+    .container {
+        max-width: var(--container-xl);
+    }
+
+    .grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
