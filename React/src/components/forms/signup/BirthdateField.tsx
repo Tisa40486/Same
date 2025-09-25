@@ -125,9 +125,8 @@ export default function BirthdateField({ value, onChange, label = "Date of Birth
     };
 
     return (
-        <div className={"card-multi-fields-row"} >
+        <div className={"card-multi-fields-row"}>
             <label>{label}</label>
-            <div>
                 <select
                     value={value.month}
                     onChange={handleMonthChange}
@@ -136,7 +135,7 @@ export default function BirthdateField({ value, onChange, label = "Date of Birth
                 >
                     <option value="">Month</option>
                     {months.map(month => (
-                        <option key={month.value} value={month.value}>
+                        <option className={"glass-dropdown-option"} key={month.value} value={month.value}>
                             {month.label}
                         </option>
                     ))}
@@ -164,12 +163,11 @@ export default function BirthdateField({ value, onChange, label = "Date of Birth
                 >
                     <option value="">Year</option>
                     {generateYears().map(year => (
-                        <option key={year} value={year.toString()}>
+                        <option className={"glass-dropdown-option"} key={year} value={year.toString()}>
                             {year}
                         </option>
                     ))}
                 </select>
-            </div>
         </div>
     );
 }

@@ -119,8 +119,8 @@ input, textarea, select {
 
     /* Input dimensions */
     --input-width: min(37vh, 400px);      /* Responsive with fallback */
-    --input-width-half: min(17vh, 200px); /* Responsive with fallback */
-    --input-width-dropdown: min(11vh, 150px); /* Responsive with fallback */
+    --input-width-half: min(17.8vh, 200px); /* Responsive with fallback */
+    --input-width-dropdown: min(11.5vh, 150px); /* Responsive with fallback */
     --input-height: 45px;
 
     /* Breakpoints (for reference) */
