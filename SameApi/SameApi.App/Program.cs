@@ -1,10 +1,6 @@
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 using SameApi.Business;
 using SameApi.Db;
-using Swashbuckle.AspNetCore.SwaggerGen;
-using Swashbuckle.AspNetCore.SwaggerUI;
-using AutoMapper;
 var builder = WebApplication.CreateBuilder(args);
 
 // -------------------- CORS --------------------
