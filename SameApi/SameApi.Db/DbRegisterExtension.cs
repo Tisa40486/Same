@@ -11,9 +11,11 @@ namespace SameApi.Db
         public static void RegisterSameApiDbContainer(this IServiceCollection services)
         {
             services.AddScoped<IApiSameDbContext, SameApiDbContext>();
+            services.AddScoped<IGenderRepository, GenderRepository>();
+            services.AddScoped<IProfessionRepository, ProfessionRepository>();
+
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IApiSameUnitOfWork, SameApiUnitOfWork>();
-            services.AddScoped<IGenderRepository, GenderRepository>();
         }
     }
 }

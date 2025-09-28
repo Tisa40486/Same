@@ -25,7 +25,7 @@ namespace SameApi.Model
 
         [ForeignKey("Same_Api_User_School")]
         public int id_school_fk { get; set; }
-        public LKP_School? SchoolDao { get; set; }
+        public LKP_SchoolDao? SchoolDao { get; set; }
 
         [ForeignKey("Same_Api_User_Post")]
         public int id_post_fk { get; set; }

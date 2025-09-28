@@ -4,8 +4,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SameApi.Model.LKP
 {
-    [Table("LKP_SameApi_Gender")]
-    public class LKP_School : IModelDao
+    [Table("LKP_SameApi_School")]
+    public class LKP_SchoolDao : IModelDao
     {
         [Key]
         public int Id { get; set; }
@@ -13,7 +13,7 @@ namespace SameApi.Model.LKP
 
         [ForeignKey("Same_Api_School_Profession")]
         public int IdProfession { get; set; }
-        public LKP_Profession? Profession { get; set; }
+        public LKP_ProfessionDao? Profession { get; set; }
 
     }
 }

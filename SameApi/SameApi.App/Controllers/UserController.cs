@@ -19,7 +19,7 @@ namespace SameApi.App.Controllers
             _mapper = mapper;
         }
 
-        [HttpGet("/GetAll")]
+        [HttpGet("getAll")]
         public async Task<ActionResult<IEnumerable<UserResponse>>> GetAllAsync()
         {
             var result = await _mediator.Send(new GetAllUserQuery());
@@ -33,14 +33,14 @@ namespace SameApi.App.Controllers
             return Ok();
         }
 
-        [HttpDelete("/User")]
+        [HttpDelete("user")]
         public async Task<IActionResult> DeleteUserAsync([FromQuery] int id)
         {
             await _mediator.Send(new DeleteUserCommand { Id = id});
             return Ok();
         }
 
-        [HttpPut("/Update")]
+        [HttpPut("update/user")]
         public async Task<IActionResult> UpdateUserAsync([FromBody] UpdateUserCommand command)
         {
             var result = await _mediator.Send(command);

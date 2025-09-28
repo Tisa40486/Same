@@ -8,6 +8,7 @@ namespace SameApi.Db.UnitOfWork
         IApiSameDbContext Context { get; }
         IUserRepository UserRepository { get; }
         IGenderRepository GenderRepository { get; }
+        IProfessionRepository ProfessionRepository { get; }
         Task<int> SaveChangesAsync();
         
     }

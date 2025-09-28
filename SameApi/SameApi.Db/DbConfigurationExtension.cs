@@ -1,7 +1,7 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using SameApi.Db.DbContexts;
-using Microsoft.EntityFrameworkCore;
 
 namespace SameApi.Db
 {
@@ -12,11 +12,17 @@ namespace SameApi.Db
             var connectionString = configuration.GetConnectionString("DefaultConnection");
 
             services.AddDbContext<SameApiDbContext>(options =>
-                options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString), o =>
-                {
-                    o.UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery).UseRelationalNulls();
-                    o.CommandTimeout((int)TimeSpan.FromMinutes(10).TotalSeconds);
-                }));
+    options.UseSqlServer(connectionString, sqlOptions =>
+    {
+        sqlOptions.UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery)
+                  .UseRelationalNulls()
+                  .EnableRetryOnFailure(
+                      maxRetryCount: 5,                // combien de fois on réessaye
+                      maxRetryDelay: TimeSpan.FromSeconds(30), // délai max entre 2 tentatives
+                      errorNumbersToAdd: null          // erreurs SQL spécifiques (null = toutes par défaut)
+                  );
+        sqlOptions.CommandTimeout((int)TimeSpan.FromMinutes(2).TotalSeconds);
+    }));
         }
     }
 }
