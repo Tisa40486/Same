@@ -27,6 +27,7 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     color: var(--color-text-white);
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
 }
 
 /* Remove default button styles */
@@ -43,6 +44,10 @@ button {
 a {
     color: inherit;
     text-decoration: none;
+}
+
+fieldset {
+  border: none;
 }
 
 /* Remove list styles */
@@ -82,7 +87,7 @@ input, textarea, select {
     /* Typography */
     --font-size-xs: 0.89rem;    /* 16px - minimum readable */
     --font-size-sm: 0.94rem;    /* 17px - comfortable minimum */
-    --font-size-base: 1rem;     /* 18px - ideal body text */
+    --font-size-base: 0.9rem;     /* 18px - ideal body text */
     --font-size-lg: 1.22rem;    /* 22px - subheadings */
     --font-size-xl: 1.33rem;    /* 24px - small headings */
     --font-size-2xl: 1.67rem;   /* 30px - medium headings */
@@ -115,9 +120,10 @@ input, textarea, select {
     --container-xl: 60vw;
 
     /* Input dimensions */
-    --input-width: min(37vh, 400px);      /* Responsive with fallback */
-    --input-width-half: min(17.5vh, 200px); /* Responsive with fallback */
-    --input-width-third: min(11vh, 150px); /* Responsive with fallback */
+    --input-width: min(80vw, 500px);
+    --input-gap: 2vw;
+    --input-width-half: min(calc((var(--input-width) - var(--input-gap)) / 2), 250px);
+    --input-width-third: min(calc((var(--input-width) - (var(--input-gap) * 2)) / 3), 160px);
     --input-height: 45px;
 
     /* Breakpoints (for reference) */
@@ -266,10 +272,9 @@ a:focus {
   justify-content: space-between !important;
 }
 
-.glass-dropdown-option {
-  color: black;
-  background-color: var(--glass-bg);
-  border: solid 1px var(--glass-border);
+.glass-dropdown option {
+  //background-color: #999999;
+  color: #333;
 }
 
 /* ==========================================================================
@@ -294,6 +299,7 @@ h1 {
     padding: 0 18px;
     transition: all var(--transition-fast);
     width: var(--input-width);
+    color: var(--color-text-white);
 }
 
 .glass-input:focus {
@@ -314,7 +320,6 @@ h1 {
 /* Dropdown styling */
 .glass-dropdown {
   @extend .glass-input;
-    padding-right: 30px;
     transition: all var(--transition-fast);
     width: var(--input-width-third);
     appearance: none;
@@ -322,13 +327,23 @@ h1 {
     background-position: right 12px center;
     background-repeat: no-repeat;
     background-size: 16px;
+    color: var(--color-text-white);
+    cursor: pointer;
 }
+
+.glass-button:hover,
+.glass-dropdown:focus {
+  background-color: rgba(255, 255, 255, 0.3);
+  border-color: rgba(255, 255, 255, 0.5);
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.1);
+}
+
 
 /* Submit button styling */
 .glass-button {
   @extend .glass-input;
     transition: all var(--transition-fast);
-    font-weight: var(--font-weight-medium);
+    font-weight: var(--font-weight-semibold);
 }
 
 .glass-button:hover,
