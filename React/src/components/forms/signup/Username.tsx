@@ -1,3 +1,5 @@
+import {useState} from "react";
+
 const reservedWords = [
     'admin',
     'root',
@@ -21,75 +23,77 @@ interface UsernameFieldProps {
 
 export default function Username({ value, onChange }: UsernameFieldProps)
 {
-    const handleBlur = () =>
-    {
+    const [errors, setErrors] = useState<string[]>([]);
+
+    const handleBlur = () => {
         const trimmedValue = value.trim();
+        const newErrors: string[] = [];
 
         // Check if empty first
         if (trimmedValue === "") {
-            console.log("Username is required");
+            newErrors.push("Username is required");
+            setErrors(newErrors);
             return;
         }
 
-        // Collect all validation errors
-        const errors: string[] = [];
-
         if (!/[a-zA-Z]/.test(value)) {
-            errors.push("Username must contain at least one letter");
+            newErrors.push("Username must contain at least one letter");
         }
 
         if (trimmedValue.length < 3 || trimmedValue.length > 19) {
             if (trimmedValue.length === 20) {
-                errors.push("You can't input more char for you username (20 is the max)");
+                newErrors.push("You can't input more char for your username (20 is the max)");
             } else {
-                errors.push('Username must have between 3 and 20 characters');
+                newErrors.push("Username must have between 3 and 20 characters");
             }
         }
 
         if (reservedWords.includes(trimmedValue.toLowerCase())) {
-            errors.push("Username can not be reserved words (like admin, root,...)");
+            newErrors.push("Username cannot be a reserved word (like admin, root, …)");
         }
 
         if (specialCharsRegex.test(value)) {
             if (/\s/.test(value)) {
-                errors.push("Username cannot contain spaces");
+                newErrors.push("Username cannot contain spaces");
             } else {
-                errors.push("Username cannot contains others special char then - and _");
+                newErrors.push("Username cannot contain other special chars than - and _");
             }
         }
 
         if (/[-_]{2,}/.test(trimmedValue)) {
-            errors.push("Username cannot contain successive hyphens or underscores");
+            newErrors.push("Username cannot contain successive hyphens or underscores");
         }
 
-        // Log results
-        if (errors.length === 0) {
-            console.log("Username is valid");
-        } else {
-            errors.forEach(error => console.log(error));
-        }
-    }
+        setErrors(newErrors);
+    };
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) =>
-    {
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         onChange(e.target.value);
-        console.clear();
+        setErrors([]);
     };
 
     return (
-        <div className={"card-row"}>
-            <label className={""}>Username</label> {/*Hide label*/}
+        <div className="card-row">
+            <label>Username</label>
             <input
+                id="username-input"
                 type="text"
-                name={"username"}
+                name="username"
                 placeholder="Username"
                 required
                 value={value}
                 onChange={handleChange}
                 onBlur={handleBlur}
                 maxLength={20}
-                className={"glass-input"}
+                className={`glass-input ${errors.length > 0 ? "glass-wrong-input" : ""}`}
             />
+            {errors.length > 0 && (
+                <span className="error-messages">
+          {errors.map((err, i) => (
+              <div key={i}>{err}</div>
+          ))}
+        </span>
+            )}
         </div>
     );
 }

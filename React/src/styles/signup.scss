@@ -83,6 +83,10 @@ input, textarea, select {
     //--color-primary: #3498db;
     //--color-primary-dark: #2980b9;
     --color-text-white: #fffafa;
+    --color-border-error: rgba(255,103,0,0.7);
+    --color-text-error: rgba(255,103,0,0.7);
+    --color-bg-error: rgba(255,103,1, 0.5);
+    --color-error-box-shadow: rgba(255,103,1, 0.2);
 
     /* Typography */
     --font-size-xs: 0.89rem;    /* 16px - minimum readable */
@@ -300,6 +304,17 @@ h1 {
     transition: all var(--transition-fast);
     width: var(--input-width);
     color: var(--color-text-white);
+}
+
+.glass-wrong-input {
+  border: solid 1px var(--color-border-error) !important;
+  background-color: var(--color-bg-error) !important;
+  box-shadow: 0 0 0 5px var(--color-error-box-shadow) !important;
+}
+
+.error-messages {
+  color: var(--color-text-error) !important;
+  font-weight: var(--font-weight-semibold) !important;
 }
 
 .glass-input:focus {
