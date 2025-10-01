@@ -1,4 +1,6 @@
-const edugeEmailRegex = /^[a-zA-Z]+\.[a-zA-Z]+@eduge\.ch$/
+import {useState} from "react";
+
+const edugeEmailRegex = /^[a-zA-Z]+\.[a-zA-Z]+@eduge\.ch$/;
 
 interface EmailFieldProps {
     value: string;
@@ -7,40 +9,34 @@ interface EmailFieldProps {
 
 export default function EmailField({ value, onChange }: EmailFieldProps)
 {
-    // const [error, setError] = useState('');
-    const handleBlur = () =>
-    {
+    const [errors, setErrors] = useState<string[]>([]);
+
+    const handleBlur = () => {
         const trimmedValue = value.trim();
+        const newErrors: string[] = [];
 
         // Check if empty first
         if (trimmedValue === "") {
-            console.log("Email is required");
+            newErrors.push("Required");
+            setErrors(newErrors);
             return;
         }
 
-        // Collect all validation errors
-        const errors: string[] = [];
-
-        if (!edugeEmailRegex.test(value)) {
-            errors.push("Please enter a valid eduge email")
+        if (!edugeEmailRegex.test(trimmedValue)) {
+            newErrors.push("Please enter a valid eduge email");
         }
 
-        // Log results
-        if (errors.length === 0) {
-            console.log("Email is valid");
-        } else {
-            errors.forEach(error => console.log(error));
-        }
-    }
+        setErrors(newErrors);
+    };
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) =>
-    {
-        onChange(e.target.value);
-        console.clear();
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const valueNoSpaces = e.target.value.replace(/\s/g, '');
+        onChange(valueNoSpaces);
+        setErrors([]);
     };
 
     return (
-        <div className={"card-row"}>
+        <div className="card-row">
             <label>Email</label>
             <input
                 type="text"
@@ -48,9 +44,16 @@ export default function EmailField({ value, onChange }: EmailFieldProps)
                 onChange={handleChange}
                 onBlur={handleBlur}
                 maxLength={50}
-                placeholder={"Email"}
-                className={"glass-input"}
+                placeholder="Email"
+                className={`glass-input ${errors.length > 0 ? "glass-wrong-input" : ""}`}
             />
+            {errors.length > 0 && (
+                <span>
+                    {errors.map((err, i) => (
+                        <div className="error-messages" key={i}>{err}</div>
+                    ))}
+                </span>
+            )}
         </div>
     );
 }

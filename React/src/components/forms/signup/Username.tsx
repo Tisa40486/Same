@@ -11,7 +11,6 @@ const reservedWords = [
     'system',
     'null',
     'undefined'
-    // Add more
 ];
 
 const specialCharsRegex = /[^a-zA-Z0-9_-]/;
@@ -31,44 +30,36 @@ export default function Username({ value, onChange }: UsernameFieldProps)
 
         // Check if empty first
         if (trimmedValue === "") {
-            newErrors.push("Username is required");
+            newErrors.push("Required");
             setErrors(newErrors);
             return;
         }
 
         if (!/[a-zA-Z]/.test(value)) {
-            newErrors.push("Username must contain at least one letter");
+            newErrors.push("Must include a letter");
         }
 
-        if (trimmedValue.length < 3 || trimmedValue.length > 19) {
-            if (trimmedValue.length === 20) {
-                newErrors.push("You can't input more char for your username (20 is the max)");
-            } else {
-                newErrors.push("Username must have between 3 and 20 characters");
-            }
+        if (trimmedValue.length < 3 || trimmedValue.length > 20) {
+            newErrors.push("3-20 characters");
         }
 
         if (reservedWords.includes(trimmedValue.toLowerCase())) {
-            newErrors.push("Username cannot be a reserved word (like admin, root, …)");
+            newErrors.push("Reserved by system");
         }
 
         if (specialCharsRegex.test(value)) {
-            if (/\s/.test(value)) {
-                newErrors.push("Username cannot contain spaces");
-            } else {
-                newErrors.push("Username cannot contain other special chars than - and _");
-            }
+            newErrors.push("Letters, numbers, - and _ only");
         }
 
-        if (/[-_]{2,}/.test(trimmedValue)) {
-            newErrors.push("Username cannot contain successive hyphens or underscores");
+        if (/-{2,}/.test(trimmedValue) || /_{2,}/.test(trimmedValue)) {
+            newErrors.push("No consecutive - or _");
         }
-
         setErrors(newErrors);
     };
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        onChange(e.target.value);
+        const valueNoSpaces = e.target.value.replace(/\s/g, '');
+        onChange(valueNoSpaces);
         setErrors([]);
     };
 
@@ -88,11 +79,11 @@ export default function Username({ value, onChange }: UsernameFieldProps)
                 className={`glass-input ${errors.length > 0 ? "glass-wrong-input" : ""}`}
             />
             {errors.length > 0 && (
-                <span className="error-messages">
-          {errors.map((err, i) => (
-              <div key={i}>{err}</div>
-          ))}
-        </span>
+                <span>
+                {errors.map((err, i) => (
+                <div className={"error-messages"} key={i}>{err}</div>
+                ))}
+                </span>
             )}
         </div>
     );

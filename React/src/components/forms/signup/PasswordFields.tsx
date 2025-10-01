@@ -1,3 +1,5 @@
+import {useState} from "react";
+
 const sequences = [
     'abcdefghijklmnopqrstuvwxyz',
     'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
@@ -33,6 +35,9 @@ export default function PasswordFields({
                                            birthdate = { month: '', day: '', year: '' }
                                        }: PasswordFieldsProps)
 {
+    const [passwordErrors, setPasswordErrors] = useState<string[]>([]);
+    const [confirmErrors, setConfirmErrors] = useState<string[]>([]);
+
     const checkConsecutiveRepeated = (password: string): boolean =>
     {
         for (let i = 0; i < password.length - 2; i++) {
@@ -93,96 +98,84 @@ export default function PasswordFields({
     const handlePasswordBlur = () =>
     {
         const trimmedValue = passwordValue.trim();
+        const newErrors: string[] = [];
 
         // Check if empty first
         if (trimmedValue === "") {
-            console.log("Password is required");
+            newErrors.push("Required");
+            setPasswordErrors(newErrors);
             return;
         }
 
-        // Collect all validation errors
-        const errors: string[] = [];
-
         if (trimmedValue.length < 16) {
-            errors.push('Password must be at least 16 characters long');
+            newErrors.push('Min. 16 characters');
         }
 
         if (!/[a-z]/.test(passwordValue)) {
-            errors.push("Password must contain at least one lowercase letter");
+            newErrors.push("Must include lowercase");
         }
 
         if (!/[A-Z]/.test(passwordValue)) {
-            errors.push("Password must contain at least one uppercase letter");
+            newErrors.push("Must include uppercase");
         }
 
         if (!/[0-9]/.test(passwordValue)) {
-            errors.push("Password must contain at least one number");
+            newErrors.push("Must include number");
         }
 
         if (!specialCharsRegex.test(passwordValue)) {
-            errors.push("Password must contain at least one special character");
+            newErrors.push("Must include special character");
         }
 
         if (/\s/.test(passwordValue)) {
-            errors.push("Password cannot contain spaces");
+            newErrors.push("No spaces allowed");
         }
 
         if (checkConsecutiveRepeated(passwordValue)) {
-            errors.push("Password cannot contain 3 or more consecutive repeated characters (like 'aaa' or '111')");
+            newErrors.push("No 3+ repeated characters");
         }
 
         if (checkSequentialChars(passwordValue)) {
-            errors.push("Password cannot contain sequential characters (like 'abc', '123', or 'qwerty')");
+            newErrors.push("No sequential characters");
         }
 
         const personalInfoViolations = checkContainsPersonalInfo(passwordValue);
         if (personalInfoViolations.length > 0) {
-            errors.push(`Password cannot contain your ${personalInfoViolations.join(', ')}`);
+            newErrors.push(`No personal info (${personalInfoViolations.join(', ')})`);
         }
 
-        // Log results
-        if (errors.length === 0) {
-            console.log("Password is valid");
-        } else {
-            errors.forEach(error => console.log(error));
-        }
+        setPasswordErrors(newErrors);
     }
 
     const handleConfirmBlur = () =>
     {
         const trimmedValue = confirmValue.trim();
+        const newErrors: string[] = [];
 
         // Check if empty first
         if (trimmedValue === "" && passwordValue.trim().length > 0) {
-            console.log('Please confirm your password');
+            newErrors.push('Required');
+            setConfirmErrors(newErrors);
             return;
         }
 
-        // Collect all validation errors
-        const errors: string[] = [];
-
         if (trimmedValue.length > 0 && trimmedValue !== passwordValue) {
-            errors.push('Passwords do not match - the two passwords must be identical');
+            newErrors.push('Passwords must match');
         }
 
-        // Log results
-        if (errors.length === 0 && trimmedValue.length > 0) {
-            console.log("Password confirmation is valid");
-        } else if (errors.length > 0) {
-            errors.forEach(error => console.log(error));
-        }
+        setConfirmErrors(newErrors);
     }
 
     const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) =>
     {
         onPasswordChange(e.target.value);
-        console.clear();
+        setPasswordErrors([]);
     };
 
     const handleConfirmChange = (e: React.ChangeEvent<HTMLInputElement>) =>
     {
         onConfirmChange(e.target.value);
-        console.clear();
+        setConfirmErrors([]);
     };
 
     return (
@@ -195,8 +188,15 @@ export default function PasswordFields({
                     onChange={handlePasswordChange}
                     onBlur={handlePasswordBlur}
                     placeholder="Enter your password (min. 16 characters)"
-                    className={"glass-input"}
+                    className={`glass-input ${passwordErrors.length > 0 ? "glass-wrong-input" : ""}`}
                 />
+                {passwordErrors.length > 0 && (
+                    <span>
+                        {passwordErrors.map((err, i) => (
+                            <div className={"error-messages"} key={i}>{err}</div>
+                        ))}
+                    </span>
+                )}
             </div>
 
             <div className={"card-row"}>
@@ -207,8 +207,15 @@ export default function PasswordFields({
                     onChange={handleConfirmChange}
                     onBlur={handleConfirmBlur}
                     placeholder="Confirm your password"
-                    className={"glass-input"}
+                    className={`glass-input ${confirmErrors.length > 0 ? "glass-wrong-input" : ""}`}
                 />
+                {confirmErrors.length > 0 && (
+                    <span>
+                        {confirmErrors.map((err, i) => (
+                            <div className={"error-messages"} key={i}>{err}</div>
+                        ))}
+                    </span>
+                )}
             </div>
         </>
     );

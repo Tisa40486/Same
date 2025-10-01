@@ -21,7 +21,8 @@ body {
     min-height: 100dvh;
     display: grid;
     place-items: center;
-    background: url('../assets/img/same-register-login-background.png') left top / cover no-repeat fixed;
+    //background: url('../assets/img/same-register-login-background.png') left top / cover no-repeat fixed;
+    background-color: #013251;
     backdrop-filter: blur(4px);
     overflow: hidden;
     -webkit-font-smoothing: antialiased;
@@ -304,6 +305,7 @@ h1 {
     transition: all var(--transition-fast);
     width: var(--input-width);
     color: var(--color-text-white);
+    margin-bottom: var(--space-xs);
 }
 
 .glass-wrong-input {
@@ -313,8 +315,14 @@ h1 {
 }
 
 .error-messages {
-  color: var(--color-text-error) !important;
-  font-weight: var(--font-weight-semibold) !important;
+  color: var(--color-text-error);
+  font-weight: var(--font-weight-semibold);
+  width: var(--input-width);
+  padding-left: 5px;
+}
+
+.error-messages-half {
+  width: var(--input-width-half) !important;
 }
 
 .glass-input:focus {
@@ -359,6 +367,7 @@ h1 {
   @extend .glass-input;
     transition: all var(--transition-fast);
     font-weight: var(--font-weight-semibold);
+    margin-bottom: var(--space-md);
 }
 
 .glass-button:hover,

@@ -55,14 +55,14 @@ export default function BirthdateField({ value, onChange, label = "Date of Birth
             errors.push("Invalid day for the selected month and year");
         }
 
-        // Age validation (must be 13+ years old)
+        // Age validation (must be 14+ years old)
         const birthDate = new Date(yearNum, monthNum - 1, dayNum);
         const today = new Date();
         const age = today.getFullYear() - birthDate.getFullYear() -
             (today < new Date(today.getFullYear(), birthDate.getMonth(), birthDate.getDate()) ? 1 : 0);
 
-        if (age < 13) {
-            errors.push("You must be at least 13 years old to register");
+        if (age < 14) {
+            errors.push("You must be at least 14 years old to register");
         }
 
         // Future date validation

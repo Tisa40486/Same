@@ -1,3 +1,5 @@
+import {useState} from "react";
+
 interface FirstNameFieldProps {
     value: string;
     onChange: (value: string) => void;
@@ -5,44 +7,36 @@ interface FirstNameFieldProps {
 
 export default function FirstNameField({ value, onChange }: FirstNameFieldProps)
 {
-    // const [error, setError] = useState('');
-    const handleBlur = () =>
-    {
+    const [errors, setErrors] = useState<string[]>([]);
+
+    const handleBlur = () => {
         const trimmedValue = value.trim();
+        const newErrors: string[] = [];
 
         // Check if empty first
         if (trimmedValue === "") {
-            console.log("First name is required");
+            newErrors.push("Required");
+            setErrors(newErrors);
             return;
         }
 
-        // Collect all validation errors
-        const errors: string[] = [];
-
-        if (trimmedValue.length < 2 || trimmedValue.length > 49) {
-            if (trimmedValue.length === 20) {
-                errors.push("You can't input more char for you first name (50 is the max)");
-            } else {
-                errors.push('First name must have between 2 and 50 characters');
-            }
+        if (trimmedValue.length < 2 || trimmedValue.length > 50) {
+            newErrors.push("2-50 characters");
         }
+        setErrors(newErrors);
+    };
 
-        if (!/^[a-zA-Z]+$/.test(value) && !(value.trim() == null || value.trim() == "")) {
-            errors.push("First name can only contain letters")
-        }
-
-        // Log results
-        if (errors.length === 0) {
-            console.log("First name is valid");
-        } else {
-            errors.forEach(error => console.log(error));
-        }
-    }
+    const capitalizeFirstLetter = (str: string): string => {
+        if (str.length === 0) return str;
+        return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+    };
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) =>
     {
-        onChange(e.target.value);
-        console.clear();
+        const valueOnlyLetters = e.target.value.replace(/[^a-zA-ZÀ-ÿ\u0100-\u017F\u0180-\u024F'-]/g, '');
+        const capitalizedValue = capitalizeFirstLetter(valueOnlyLetters);
+        onChange(capitalizedValue);
+        setErrors([]);
     };
 
     return (
@@ -55,8 +49,15 @@ export default function FirstNameField({ value, onChange }: FirstNameFieldProps)
                 onBlur={handleBlur}
                 maxLength={50}
                 placeholder={"First Name"}
-                className={"glass-input half-input"}
+                className={`glass-input half-input ${errors.length > 0 ? "glass-wrong-input" : ""}`}
             />
+            {errors.length > 0 && (
+                <span>
+                {errors.map((err, i) => (
+                    <div className={"error-messages error-messages-half"} key={i}>{err}</div>
+                ))}
+                </span>
+            )}
         </div>
     );
 }
