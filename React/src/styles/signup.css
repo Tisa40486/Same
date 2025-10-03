@@ -86,10 +86,11 @@
    ========================================================================== */
 
 body {
-  display: grid;
-  place-items: center;
-  backdrop-filter: blur(4px);
-  overflow: hidden;
+    display: grid;
+    place-items: center;
+    backdrop-filter: blur(4px);
+    overflow: hidden;
+font-size: var(--font-size-sm);
 }
 
 /* ==========================================================================

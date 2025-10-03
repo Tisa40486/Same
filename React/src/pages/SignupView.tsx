@@ -1,5 +1,5 @@
 import SignupCard from '../components/forms/signup/SignupCard'
-import '../styles/signup.scss'
+import '../styles/signup.css'
 
 export default function SignupView() {
     return (
