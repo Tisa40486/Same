@@ -7,6 +7,7 @@ import FirstNameField from "./FirstNameField.tsx"
 import LastNameField from "./LastNameField.tsx"
 import BirthdateField from "./BirthdateField.tsx"
 import PasswordFields from "./PasswordFields.tsx"
+import {PostUser, type PostUserProps} from '../../../api/User.ts'
 
 const StyledForm = styled.form`
     width: 100%;
@@ -54,6 +55,21 @@ export default function SignupForm() {
     const [password, setPassword] = useState('')
     const [confirmPassword, setConfirmPassword] = useState('')
 
+    const HandleSubmit = () => {
+        const User:PostUserProps = {
+            pseudo : username,
+            email : email,
+            age: 0,
+            password: password,
+        }
+        try {
+            await PostUser(User)
+        }
+        catch (e) {
+            console.error(e)
+        }
+    }
+
     return (
         <StyledForm method="post">
             <Username value={username} onChange={setUsername}/>
@@ -74,7 +90,7 @@ export default function SignupForm() {
                 email={email}
                 birthdate={birthdate}
             />
-            <SubmitButton type="submit">Submit</SubmitButton>
+            <SubmitButton onClick={() => HandleSubmit} type="submit">Submit</SubmitButton>
         </StyledForm>
     )
 }
