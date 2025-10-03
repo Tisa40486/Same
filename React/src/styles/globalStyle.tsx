@@ -1,50 +1,63 @@
 import { css } from '@emotion/react'
+import type {Theme} from './theme'
 
-export const globalStyle = css`
-  /* Reset */
-  *, *::before, *::after {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-  }
+export const globalStyle = (theme: Theme) => css`
+    *, *::before, *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
 
-  html {
-    -webkit-text-size-adjust: 100%;
-  }
+    html {
+        -webkit-text-size-adjust: 100%;
+    }
 
-  body {
-    min-height: 100dvh;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
-    color: #fffafa;
-    background-color: #013251;
-  }
+    body {
+        min-height: 100dvh;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+        color: ${theme.colors.textWhite};
+        background-color: ${theme.colors.bgPrimary};
+        font-size: ${theme.fontSize.sm};
+        display: grid;
+        place-items: center;
+        backdrop-filter: blur(4px);
+        overflow: hidden;
+    }
 
-  button {
-    background: none;
-    border: none;
-    cursor: pointer;
-    font: inherit;
-  }
+    h1 {
+        text-align: center;
+    }
 
-  a {
-    color: inherit;
-    text-decoration: none;
-  }
+    button {
+        background: none;
+        border: none;
+        cursor: pointer;
+        font: inherit;
+    }
 
-  fieldset { border: none; }
-  ul, ol { list-style: none; }
-  
-  img, video, iframe {
-    max-width: 100%;
-    height: auto;
-    display: block;
-  }
+    a {
+        color: inherit;
+        text-decoration: none;
+    }
 
-  input, textarea, select {
-    font: inherit;
-    border: none;
-    outline: none;
-  }
+    fieldset { border: none; }
+    ul, ol { list-style: none; }
+
+    img, video, iframe {
+        max-width: 100%;
+        height: auto;
+        display: block;
+    }
+
+    input, textarea, select {
+        font: inherit;
+        border: none;
+        outline: none;
+    }
+
+    label {
+        display: none;
+    }
 `

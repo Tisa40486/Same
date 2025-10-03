@@ -1,12 +1,15 @@
-import { Global } from '@emotion/react'
+import { ThemeProvider, Global } from '@emotion/react'
+import { theme } from './styles/theme'
 import { globalStyle } from './styles/globalStyle'
 import AppRoutes from './AppRoutes'
 
 function App() {
     return (
         <>
-            <Global styles={globalStyle} />
-            <AppRoutes />
+            <ThemeProvider theme={theme}>
+                <Global styles={globalStyle} />
+                <AppRoutes />
+            </ThemeProvider>
         </>
     )
 }

@@ -1,32 +1,67 @@
-import { useState } from 'react';
+import { useState } from 'react'
+import styled from '@emotion/styled'
 // import { useForm } from 'react-hook-form'
-import Username from "./Username.tsx";
-import EmailField from "./EmailField.tsx";
-import FirstNameField from "./FirstNameField.tsx";
-import LastNameField from "./LastNameField.tsx";
-import BirthdateField from "./BirthdateField.tsx";
-import PasswordFields from "./PasswordFields.tsx";
+import Username from "./Username.tsx"
+import EmailField from "./EmailField.tsx"
+import FirstNameField from "./FirstNameField.tsx"
+import LastNameField from "./LastNameField.tsx"
+import BirthdateField from "./BirthdateField.tsx"
+import PasswordFields from "./PasswordFields.tsx"
+
+const StyledForm = styled.form`
+    width: 100%;
+`
+
+const MultiFieldRow = styled.fieldset`
+    width: 100%;
+    margin-bottom: ${({ theme }) => theme.spacing.md};
+    display: flex;
+    justify-content: space-between;
+`
+
+const SubmitButton = styled.button`
+    background-color: ${({ theme }) => theme.glass.bg};
+    border: solid 1px ${({ theme }) => theme.glass.border};
+    border-radius: ${({ theme }) => theme.borderRadius.md};
+    height: ${({ theme }) => theme.input.height};
+    padding: 0 18px;
+    transition: all ${({ theme }) => theme.transition.fast};
+    width: ${({ theme }) => theme.input.width};
+    color: ${({ theme }) => theme.colors.textWhite};
+    margin-bottom: ${({ theme }) => theme.spacing.md};
+    font-weight: ${({ theme }) => theme.fontWeight.semibold};
+
+    &:hover, &:focus {
+        background-color: ${({ theme }) => theme.glass.bgHover};
+        transform: translateY(-1px);
+        box-shadow: ${({ theme }) => theme.shadow.md};
+    }
+
+    &:active {
+        transform: translateY(0);
+    }
+`
 
 export default function SignupForm() {
     // const form = useForm()
     // const { handleSubmit } = form
 
-    const [username, setUsername] = useState('');
-    const [firstName, setFirstName] = useState('');
-    const [lastName, setLastName] = useState('');
-    const [email, setEmail] = useState('');
-    const [birthdate, setBirthdate] = useState({ month: '', day: '', year: '' });
-    const [password, setPassword] = useState('');
-    const [confirmPassword, setConfirmPassword] = useState('');
+    const [username, setUsername] = useState('')
+    const [firstName, setFirstName] = useState('')
+    const [lastName, setLastName] = useState('')
+    const [email, setEmail] = useState('')
+    const [birthdate, setBirthdate] = useState({ month: '', day: '', year: '' })
+    const [password, setPassword] = useState('')
+    const [confirmPassword, setConfirmPassword] = useState('')
 
     return (
-        <form method="post">
+        <StyledForm method="post">
             <Username value={username} onChange={setUsername}/>
             <EmailField value={email} onChange={setEmail}/>
-            <fieldset className={"card-multi-fields-row"}>
+            <MultiFieldRow>
                 <FirstNameField value={firstName} onChange={setFirstName}/>
                 <LastNameField value={lastName} onChange={setLastName}/>
-            </fieldset>
+            </MultiFieldRow>
             <BirthdateField value={birthdate} onChange={setBirthdate}/>
             <PasswordFields
                 passwordValue={password}
@@ -39,7 +74,7 @@ export default function SignupForm() {
                 email={email}
                 birthdate={birthdate}
             />
-            <button className={"glass-button card-row"} type="submit">Submit</button>
-        </form>
-    );
+            <SubmitButton type="submit">Submit</SubmitButton>
+        </StyledForm>
+    )
 }

@@ -1,6 +1,5 @@
 import { Routes, Route } from 'react-router-dom'
 import HomeView from './pages/HomeView.tsx'
-// import NotFoundView from './pages/NotFoundView.tsx'
 import SignupView from './pages/SignupView.tsx'
 import LoginView from './pages/LoginView.tsx'
 
@@ -15,7 +14,7 @@ export const AppRoutes = () => {
         {
             element: <HomeView />,
             path: '*',
-            key: 'home'
+            key: 'notfound'
         },
         {
             element: <SignupView />,
@@ -30,8 +29,8 @@ export const AppRoutes = () => {
     ]
     return (
         <Routes>
-            {initRoutes().map(({ ...routeConfig }) => (
-                <Route {...routeConfig} />
+            {initRoutes().map(({ key, ...routeConfig }) => (
+                <Route key={key} {...routeConfig} />
             ))}
         </Routes>
     )
