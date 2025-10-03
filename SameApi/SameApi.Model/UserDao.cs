@@ -15,7 +15,7 @@ namespace SameApi.Model
         public required string Pseudo { get; set; }
         public required string Email { get; set; }
         public required string Password { get; set; }
-        public int Number_follow { get; set; }
+        public int NumberFollowers { get; set; }
         public DateTime CreateAt { get; set; }
 
 

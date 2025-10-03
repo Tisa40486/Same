@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SameApi.Db.DbContexts;
 
@@ -11,9 +12,11 @@ using SameApi.Db.DbContexts;
 namespace SameApi.Db.Migrations
 {
     [DbContext(typeof(SameApiDbContext))]
-    partial class SameApiDbContextModelSnapshot : ModelSnapshot
+    [Migration("20251003070443_1.0.1")]
+    partial class _101
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
