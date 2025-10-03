@@ -1,4 +1,4 @@
-export default function Login(){
+export default function LoginView(){
     return (
         <>
             <h1>Login</h1>

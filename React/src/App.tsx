@@ -1,17 +1,12 @@
-import { Routes, Route } from 'react-router-dom'
-import Signup from './pages/Signup.tsx'
-import Home from './pages/Home.tsx'
-import Login from './pages/Login.tsx'
+import { Global } from '@emotion/react'
+import { globalStyle } from './styles/globalStyle'
+import AppRoutes from './AppRoutes'
 
 function App() {
     return (
         <>
-            <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/home" element={<Home />} />
-                <Route path="/signup" element={<Signup />} />
-                <Route path="/login" element={<Login />} />
-            </Routes>
+            <Global styles={globalStyle} />
+            <AppRoutes />
         </>
     )
 }
