@@ -5,7 +5,9 @@ const edugeEmailRegex = /^[a-zA-Z]+\.[a-zA-Z]+@eduge\.ch$/
 
 const FieldWrapper = styled.div`
     width: 100%;
-    margin-bottom: ${({ theme }) => theme.spacing.md};
+    margin-bottom: ${({ theme }) => {
+        return theme.spacing.md;
+    }};
 `
 
 const StyledInput = styled.input<{ hasError: boolean }>`

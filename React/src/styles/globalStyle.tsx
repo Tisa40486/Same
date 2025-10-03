@@ -1,7 +1,7 @@
 import { css } from '@emotion/react'
 import type {Theme} from './theme'
 
-export const globalStyles = (theme: Theme) => css`
+export const globalStyle = (theme: Theme) => css`
     *, *::before, *::after {
         box-sizing: border-box;
         margin: 0;
