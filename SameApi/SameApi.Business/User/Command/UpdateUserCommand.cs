@@ -6,11 +6,11 @@ using SameApi.Model;
 
 namespace SameApi.Business.User.Command
 {
-    public class UpdateUserCommand : UserInput, IRequest<int>
+    public class UpdateUserCommand : UserInput, IRequest<int?>
     {
 
     }
-    public class UpdateUserCommandHandler : IRequestHandler<UpdateUserCommand, int>
+    public class UpdateUserCommandHandler : IRequestHandler<UpdateUserCommand, int?>
     {
         readonly IApiSameUnitOfWork _apiSameUnitOfWork;
         readonly IMapper _mapper;
@@ -23,9 +23,12 @@ namespace SameApi.Business.User.Command
             _mapper = mapper;
         }
 
-        public async Task<int> Handle(UpdateUserCommand request, CancellationToken cancellationToken)
+        public async Task<int?> Handle(UpdateUserCommand request, CancellationToken cancellationToken)
         {
             var data = await _apiSameUnitOfWork.UserRepository.GetByIdAsync(request.Id, false);
+
+            if (data == null)
+                return null;
 
             _mapper.Map<UserInput, UserDao>(request, data);
 

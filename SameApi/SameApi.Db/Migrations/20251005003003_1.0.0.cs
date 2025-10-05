@@ -38,18 +38,6 @@ namespace SameApi.Db.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "SameApi_Post",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1")
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_SameApi_Post", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "LKP_SameApi_School",
                 columns: table => new
                 {
@@ -77,17 +65,18 @@ namespace SameApi.Db.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     IsAdmin = table.Column<bool>(type: "bit", nullable: false),
                     Age = table.Column<int>(type: "int", nullable: false),
+                    Birthday = table.Column<DateTime>(type: "datetime2", nullable: true),
                     Pseudo = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Number_follow = table.Column<int>(type: "int", nullable: false),
+                    NumberFollowers = table.Column<int>(type: "int", nullable: false),
                     CreateAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     id_gender_fk = table.Column<int>(type: "int", nullable: false),
                     GenderDaoId = table.Column<int>(type: "int", nullable: true),
                     id_school_fk = table.Column<int>(type: "int", nullable: false),
-                    SchoolDaoId = table.Column<int>(type: "int", nullable: true),
-                    id_post_fk = table.Column<int>(type: "int", nullable: false),
-                    PostDaoId = table.Column<int>(type: "int", nullable: true)
+                    SchoolDaoId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -102,11 +91,6 @@ namespace SameApi.Db.Migrations
                         column: x => x.SchoolDaoId,
                         principalTable: "LKP_SameApi_School",
                         principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_SameApi_User_SameApi_Post_PostDaoId",
-                        column: x => x.PostDaoId,
-                        principalTable: "SameApi_Post",
-                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateIndex(
@@ -118,11 +102,6 @@ namespace SameApi.Db.Migrations
                 name: "IX_SameApi_User_GenderDaoId",
                 table: "SameApi_User",
                 column: "GenderDaoId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_SameApi_User_PostDaoId",
-                table: "SameApi_User",
-                column: "PostDaoId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_SameApi_User_SchoolDaoId",
@@ -141,9 +120,6 @@ namespace SameApi.Db.Migrations
 
             migrationBuilder.DropTable(
                 name: "LKP_SameApi_School");
-
-            migrationBuilder.DropTable(
-                name: "SameApi_Post");
 
             migrationBuilder.DropTable(
                 name: "LKP_SameApi_Profession");

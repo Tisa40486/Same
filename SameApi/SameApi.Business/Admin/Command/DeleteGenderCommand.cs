@@ -24,6 +24,7 @@ namespace SameApi.Business.Admin.Command
         public async Task<int> Handle(DeleteGenderCommand command, CancellationToken cancellationToken)
         {
             var dao = _mapper.Map<LKP_GenderDao>(command);
+
             await _uow.GenderRepository.RemoveByIdAsync(dao.Id);
 
             return dao.Id;

@@ -37,6 +37,23 @@ namespace SameApi.Db.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("LKP_SameApi_Gender");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Male"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Female"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "Other"
+                        });
                 });
 
             modelBuilder.Entity("SameApi.Model.LKP.LKP_ProfessionDao", b =>
@@ -81,19 +98,6 @@ namespace SameApi.Db.Migrations
                     b.ToTable("LKP_SameApi_School");
                 });
 
-            modelBuilder.Entity("SameApi.Model.PostDao", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.HasKey("Id");
-
-                    b.ToTable("SameApi_Post");
-                });
-
             modelBuilder.Entity("SameApi.Model.UserDao", b =>
                 {
                     b.Property<int>("Id")
@@ -105,11 +109,17 @@ namespace SameApi.Db.Migrations
                     b.Property<int>("Age")
                         .HasColumnType("int");
 
+                    b.Property<DateTime?>("Birthday")
+                        .HasColumnType("datetime2");
+
                     b.Property<DateTime>("CreateAt")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Email")
                         .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FirstName")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("GenderDaoId")
@@ -118,15 +128,15 @@ namespace SameApi.Db.Migrations
                     b.Property<bool>("IsAdmin")
                         .HasColumnType("bit");
 
+                    b.Property<string>("LastName")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("NumberFollowers")
                         .HasColumnType("int");
 
                     b.Property<string>("Password")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("PostDaoId")
-                        .HasColumnType("int");
 
                     b.Property<string>("Pseudo")
                         .IsRequired()
@@ -138,17 +148,12 @@ namespace SameApi.Db.Migrations
                     b.Property<int>("id_gender_fk")
                         .HasColumnType("int");
 
-                    b.Property<int>("id_post_fk")
-                        .HasColumnType("int");
-
                     b.Property<int>("id_school_fk")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.HasIndex("GenderDaoId");
-
-                    b.HasIndex("PostDaoId");
 
                     b.HasIndex("SchoolDaoId");
 
@@ -170,17 +175,11 @@ namespace SameApi.Db.Migrations
                         .WithMany()
                         .HasForeignKey("GenderDaoId");
 
-                    b.HasOne("SameApi.Model.PostDao", "PostDao")
-                        .WithMany()
-                        .HasForeignKey("PostDaoId");
-
                     b.HasOne("SameApi.Model.LKP.LKP_SchoolDao", "SchoolDao")
                         .WithMany()
                         .HasForeignKey("SchoolDaoId");
 
                     b.Navigation("GenderDao");
-
-                    b.Navigation("PostDao");
 
                     b.Navigation("SchoolDao");
                 });

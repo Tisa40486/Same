@@ -13,7 +13,7 @@ namespace SameApi.Db.Repository.Implementation
             _dbContext = dbContext;
         }
 
-        public async Task AddAndSaveAsync(LKP_GenderDao entity)
+        public new async Task AddAndSaveAsync(LKP_GenderDao entity)
         {
             _dbContext.Set<LKP_GenderDao>().Add(entity);
             await _dbContext.SaveChangesAsync();

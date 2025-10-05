@@ -1,4 +1,5 @@
-﻿using SameApi.Data.Repository;
+﻿using Microsoft.EntityFrameworkCore;
+using SameApi.Data.Repository;
 using SameApi.Db.DbContexts;
 using SameApi.Model;
 
@@ -6,5 +7,6 @@ namespace SameApi.Db.Repository
 {
     public interface IUserRepository : IBaseRepository<IApiSameDbContext, UserDao>
     {
+        Task<List<UserDao>> GetAllUsersAsync();
     }
 }

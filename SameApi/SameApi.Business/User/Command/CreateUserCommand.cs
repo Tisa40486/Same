@@ -22,6 +22,16 @@ namespace SameApi.Business.User.Command
         public async Task Handle(CreateUserCommand request, CancellationToken cancellationToken)
         {
             var dao = _mapper.Map<UserDao>(request);
+
+            var today = DateTime.Now;
+
+            var age = today.Year - dao.Birthday!.Value.Year;
+
+            if (dao.Birthday.Value.Date> today.AddYears(-age))
+                age--;
+
+            dao.Age = age;
+
             await _uow.UserRepository.AddAndSaveAsync(dao);
         }
     }

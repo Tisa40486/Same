@@ -1,7 +1,7 @@
-﻿using SameApi.Db.UnitOfWork;
-using AutoMapper;
-using SameApi.Dto;
+﻿using AutoMapper;
 using MediatR;
+using SameApi.Db.Repository;
+using SameApi.Dto;
 
 namespace SameApi.Business.User.Command
 {
@@ -10,20 +10,21 @@ namespace SameApi.Business.User.Command
     }
     public class GetAllUserQueryHandler : IRequestHandler<GetAllUserQuery, IEnumerable<UserResponse>>
     {
-        readonly IApiSameUnitOfWork _apiTestUnitOfWork;
+        readonly IUserRepository _userRepository;
         readonly IMapper _mapper;
 
         public GetAllUserQueryHandler(
-            IApiSameUnitOfWork apiTestUnitOfWork, IMapper mapper)
+            IUserRepository userRepository,
+            IMapper mapper)
         {
-            _apiTestUnitOfWork = apiTestUnitOfWork;
+            _userRepository = userRepository;
             _mapper = mapper;
         }
 
 
         public async Task<IEnumerable<UserResponse>> Handle(GetAllUserQuery request, CancellationToken cancellationToken)
         {
-            var data = await _apiTestUnitOfWork.UserRepository.GetAllAsync();
+            var data = await _userRepository.GetAllUsersAsync();
 
             var result = _mapper.Map<IEnumerable<UserResponse>>(data);
             return result;

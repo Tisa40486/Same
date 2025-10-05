@@ -2,6 +2,8 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using SameApi.Business.User.Command;
+using SameApi.Business.User.Query;
+using SameApi.Db.Repository.Implementation;
 using SameApi.Dto;
 
 namespace SameApi.App.Controllers
@@ -11,14 +13,18 @@ namespace SameApi.App.Controllers
     public class UserController : ControllerBase
     {
         private readonly IMediator _mediator;
-        private readonly IMapper _mapper;
-
-        public UserController(IMediator mediator, IMapper mapper)
+        
+        public UserController(IMediator mediator)
         {
             _mediator = mediator;
-            _mapper = mapper;
         }
+        [HttpGet("{id}")]
+        public async Task<ActionResult<UserResponse?>> GetByIdAsync(int id)
+        {
+            var result = await _mediator.Send(new GetUserByIdQuery { Id = id });
 
+            return Ok(result);
+        }
         [HttpGet("getAll")]
         public async Task<ActionResult<IEnumerable<UserResponse>>> GetAllAsync()
         {
