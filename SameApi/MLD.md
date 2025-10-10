@@ -19,5 +19,17 @@ erDiagram
         string Name
     }
 
+    School {
+        int id PK
+        string Name
+        int professionId FK
+    }
+    Profession {
+        int id PK
+        string Name
+    }
+
+<!-- Relations -->
     User ||--o{ Gender : "identify"
+    School ||--o{ Profession : "Get Profession"
 
