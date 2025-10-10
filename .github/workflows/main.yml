@@ -1,0 +1,63 @@
+# Nom du workflow qui apparaîtra dans l'onglet "Actions" de GitHub
+name: Build and Deploy .NET API to Azure
+
+# Déclenche le workflow à chaque push sur la branche "dev"
+on:
+  push:
+    branches: [ "dev" ]
+  workflow_dispatch:
+
+jobs:
+  # PREMIER JOB : Construit l'application
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    # Étape 1 : Récupère le code de votre dépôt
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    # Étape 2 : Configure l'environnement .NET
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        # --- MODIFIEZ ICI ---
+        # Mettez la version de .NET de votre projet (ex: '6.0.x', '8.0.x')
+        dotnet-version: '9.0.x'
+
+    # Étape 3 : Restaure les dépendances, compile et publie le projet
+    - name: Build and publish
+      run: |
+        dotnet restore SameApi.sln
+        dotnet build SameApi.sln --configuration Release --no-restore
+        dotnet publish ./SameApi/SameApi.App/SameApi.App.csproj -c Release -o ./publish
+        
+    # Étape 4 : Archive les fichiers publiés pour le job de déploiement
+    - name: Upload artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: api-app
+        path: ./publish
+
+  # DEUXIÈME JOB : Déploie l'application sur Azure
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build # Ce job ne démarre que si le job "build" a réussi
+    
+    steps:
+    # Étape 1 : Télécharge les fichiers archivés par le job "build"
+    - name: Download a Build Artifact
+      uses: actions/download-artifact@v4
+      with:
+        name: api-app
+
+    # Étape 2 : Déploie sur Azure App Service
+    - name: Deploy to Azure Web App
+      uses: azure/webapps-deploy@v2
+      with:
+        # --- MODIFIEZ ICI ---
+        # Mettez le nom de votre App Service créé sur Azure
+        app-name: 'SameAPi'
+        
+        # Utilise le secret que vous avez configuré dans les paramètres GitHub
+        publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
