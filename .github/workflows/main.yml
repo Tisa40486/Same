@@ -23,7 +23,7 @@ jobs:
       with:
         # --- MODIFIEZ ICI ---
         # Mettez la version de .NET de votre projet (ex: '6.0.x', '8.0.x')
-        dotnet-version: '8.0.x'
+        dotnet-version: '9.0.x'
 
     # Étape 3 : Restaure les dépendances, compile et publie le projet
     - name: Build and publish
