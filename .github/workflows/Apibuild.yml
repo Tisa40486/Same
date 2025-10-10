@@ -1,0 +1,37 @@
+name: Build and Publish .NET API
+
+on:
+  push:
+    branches: [ "dev" ] # Se déclenche quand vous poussez sur la branche 'dev'
+  workflow_dispatch:
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+
+    steps:
+    # 1. Récupère le code de votre dépôt
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    # 2. Installe la bonne version de .NET
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        # IMPORTANT : Modifiez cette ligne pour correspondre à la version de votre projet !
+        # (Ex: '6.0.x', '7.0.x', '8.0.x')
+        dotnet-version: '6.0.x'
+
+    # 3. Restaure les dépendances en ciblant votre fichier .sln
+    - name: Restore dependencies
+      run: dotnet restore SameApi.sln
+
+    # 4. Compile le projet en mode Release
+    - name: Build
+      run: dotnet build SameApi.sln --configuration Release --no-restore
+
+    # 5. Publie l'API (prépare les fichiers pour le déploiement)
+    - name: Publish
+      run: dotnet publish ./SameApi/SameApi.App/SameApi.App.csproj -c Release -o ./publish
+      # ATTENTION : Vérifiez que le chemin vers votre projet API (.csproj) est correct.
+      # D'après votre screenshot, il s'agit probablement de "SameApi.App".
