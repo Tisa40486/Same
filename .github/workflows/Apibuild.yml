@@ -14,13 +14,16 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v3
 
+    - name: List files in the repository
+      run: ls -R
+      
     # 2. Installe la bonne version de .NET
     - name: Setup .NET
       uses: actions/setup-dotnet@v3
       with:
         # IMPORTANT : Modifiez cette ligne pour correspondre à la version de votre projet !
         # (Ex: '6.0.x', '7.0.x', '8.0.x')
-        dotnet-version: '6.0.x'
+        dotnet-version: '9.0.x'
 
     # 3. Restaure les dépendances en ciblant votre fichier .sln
     - name: Restore dependencies
