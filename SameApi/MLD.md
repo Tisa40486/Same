@@ -14,6 +14,9 @@ erDiagram
         int genderId FK
         int schoolId FK
     }
+    Post {
+        int id PK
+    }
 
     Gender {
         int id PK
@@ -25,6 +28,7 @@ erDiagram
         string Name
         int professionId FK
     }
+    
     Profession {
         int id PK
         string Name
