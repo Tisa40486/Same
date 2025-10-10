@@ -13,3 +13,11 @@ erDiagram
         DateTime CreateAt
         int genderId FK
     }
+
+    Gender {
+        int id PK
+        string Name
+    }
+
+    User ||--o{ Gender : "identify"
+
