@@ -12,6 +12,7 @@ erDiagram
         int NumberFollowers
         DateTime CreateAt
         int genderId FK
+        int schoolId FK
     }
 
     Gender {
@@ -31,5 +32,6 @@ erDiagram
 
 
     User ||--o{ Gender : "identify"
+    User ||--o{ School : "at"
     School ||--o{ Profession : "Get Profession"
 
