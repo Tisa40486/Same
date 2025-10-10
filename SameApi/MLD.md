@@ -1,4 +1,5 @@
 # Same Model DB
+```mermaid
 
     USER || --o{ POST : "Make some"
        
@@ -78,9 +79,4 @@
         string content
         datetime createdAt
     }
-
-
-erDiagram
-    CUSTOMER ||--o{ ORDER : places
-    ORDER ||--|{ LINE-ITEM : contains
-    CUSTOMER }|..|{ DELIVERY-ADDRESS : uses
+```
