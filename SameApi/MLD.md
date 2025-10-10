@@ -1,84 +1,81 @@
-## Database Model
-
-```mermaid
 erDiagram
-    USER || --o{ POST : "Make some"}
-       
-    USER ||--o{ LKP_SCHOOL : "Be At"}
-    POST ||--o{ TAGS : "Had"}
-    POST ||--o{ COMMENT : "Comment"}
-    LKP_SCHOOL ||--o{ LKP_PROFESSION : "Have Professions"}
-    USER ||--o{ LKP_Gender : "Be"}
-    TAGS ||--o{ LKP_TAG_REQUIRED : "Contain"}
-    TAGS ||--o{ TAG_OPTIONAL : "Contain"}
-    TAGS ||--o{ POST : "On"}
-
     USER {
-        int id
-        bool isadmin
-        Datetime birthday
-        string firstName
-        string lastName
+        int id PK
         string pseudo
         string email
         string password
-        int NumberFollowers
-        datetime createAt
-        int id_gender_fk
-        int id_school_fk
-        int id_post_fk
-    }
-
-    LKP_Gender {
-        int id_gender
-        string gender
+        datetime birthday
+        datetime createdAt
+        int id_gender_fk FK
+        int id_school_fk FK
     }
 
     POST {
-        int id_post
-        string post
-        int id_comment
-        int like
-        string img
-        datetime createAt
-        int id_user
-        int id_tag_fk
-    }
-
-    TAGS {
-        int id_tag
-        datetime createAt
-        int id_post_fk
-        int id_tag_required_fk
-        int id_tag_optional_fk
-    }
-
-    LKP_TAG_REQUIRED{
-        int id_tag_required
-        string tag_required
-    }
-
-    TAG_OPTIONAL{
-        int id_tag_optional
-        string tag_optional
-    }
-
-    LKP_SCHOOL {
-        int id_school
-        string name
-        int id_profession_fk
-    }
-
-    LKP_PROFESSION {
-        int id_profession
-        string name_profession
+        int id_post PK
+        string content
+        string img_url
+        datetime createdAt
+        int id_user_fk FK
     }
 
     COMMENT {
-        int id
-        int postId
-        int id_user
-        string title
+        int id PK
         string content
         datetime createdAt
+        int id_user_fk FK
+        int id_post_fk FK
     }
+
+    POST_LIKE {
+        int id_user_fk PK,FK
+        int id_post_fk PK,FK
+    }
+
+    LKP_TAG {
+        int id_tag PK
+        string name
+        bool is_required
+    }
+
+    POST_TAGS {
+        int id_post_fk PK,FK
+        int id_tag_fk PK,FK
+    }
+
+    LKP_SCHOOL {
+        int id_school PK
+        string name
+    }
+
+    LKP_PROFESSION {
+        int id_profession PK
+        string name
+    }
+
+    SCHOOL_PROFESSIONS {
+        int id_school_fk PK,FK
+        int id_profession_fk PK,FK
+    }
+
+    LKP_Gender {
+        int id_gender PK
+        string name
+    }
+
+    %% --- Relations ---
+    USER ||--|{ POST : "creates"
+    USER ||--|{ COMMENT : "writes"
+    USER ||--o{ LKP_Gender : "is of"
+    USER ||--o{ LKP_SCHOOL : "attends"
+    USER ||--o{ POST_LIKE : "likes"
+
+    POST ||--|{ COMMENT : "has"
+    POST ||--o{ POST_LIKE : "is liked by"
+
+    %% Many-to-many relationship for Tags
+    POST                 }o--|| POST_TAGS        : "is tagged with"
+    POST_TAGS            ||--o{ LKP_TAG          : "uses tag"
+
+    %% Many-to-many relationship for Professions
+    LKP_SCHOOL           }o--|| SCHOOL_PROFESSIONS : "offers"
+    SCHOOL_PROFESSIONS   ||--o{ LKP_PROFESSION   : "is taught in"
