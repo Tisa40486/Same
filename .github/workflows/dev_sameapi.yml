@@ -1,7 +1,7 @@
 # Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
 # More GitHub Actions for Azure: https://github.com/Azure/actions
 
-name: Build and deploy ASP.Net Core app to Azure Web App - SameApi
+name: Build and deploy ASP.Net Core app to Azure Web App - SameAPi
 
 on:
   push:
@@ -51,15 +51,15 @@ jobs:
       - name: Login to Azure
         uses: azure/login@v2
         with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_7532D2BA3F0B4806A4A1CBF64821E21C }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_99D3B1FED422474FBC922D21AF89B6C6 }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_CCFB6879FAB3433182EA31F9BD5B41AA }}
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_938348F187564C3B99EEAC07B33A32D3 }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_1A1588C4745F4A6184A185515AFE4962 }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_D411945B807644A188726D8FE6F26A7A }}
 
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v3
         with:
-          app-name: 'SameApi'
+          app-name: 'SameAPi'
           slot-name: 'Production'
           package: .
           
