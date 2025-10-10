@@ -29,7 +29,7 @@ erDiagram
         string Name
     }
 
-<!-- Relations -->
+
     User ||--o{ Gender : "identify"
     School ||--o{ Profession : "Get Profession"
 
