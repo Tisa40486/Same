@@ -2,7 +2,6 @@
 ```mermaid
 
     USER || --o{ POST : "Make some"
-       
     USER ||--o{ LKP_SCHOOL : "Be At"
     POST ||--o{ TAGS : "Had"
     POST ||--o{ COMMENT : "Comment"
