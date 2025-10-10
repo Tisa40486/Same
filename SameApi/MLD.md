@@ -1,6 +1,4 @@
-# Same Model DB
-```mermaid
-
+erDiagram
     USER || --o{ POST : "Make some"
     USER ||--o{ LKP_SCHOOL : "Be At"
     POST ||--o{ TAGS : "Had"
@@ -49,12 +47,12 @@
         int id_tag_optional_fk
     }
 
-    LKP_TAG_REQUIRED{
+    LKP_TAG_REQUIRED {
         int id_tag_required
         string tag_required
     }
 
-    TAG_OPTIONAL{
+    TAG_OPTIONAL {
         int id_tag_optional
         string tag_optional
     }
@@ -78,4 +76,3 @@
         string content
         datetime createdAt
     }
-```
