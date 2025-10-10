@@ -1,15 +1,15 @@
 ```mermaid
 erDiagram
-    UTILISATEUR {
-        int id_utilisateur PK
-        string nom
-        string email
+    User {
+        int id PK
+        bool isAdmin
+        DateTime Birthday
+        string firstName
+        string lastName
+        string Pseudo
+        string Email
+        string password
+        int NumberFollowers
+        DateTime CreateAt
+        int genderId FK
     }
-    COMMANDE {
-        int id_commande PK
-        date date_commande
-        float total
-        int id_utilisateur FK
-    }
-
-    UTILISATEUR ||--o{ COMMANDE : "passe"
