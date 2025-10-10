@@ -2,25 +2,27 @@
 
 ```mermaid
 erDiagram
-    USER || --o{ POST : "Make some"
+    USER || --o{ POST : "Make some"}
        
-    USER ||--o{ LKP_SCHOOL : "Be At"
-    POST ||--o{ TAGS : "Had"
-    POST ||--o{ COMMENT : "Comment"
-    LKP_SCHOOL ||--o{ LKP_PROFESSION : "Have Professions"
-    USER ||--o{ LKP_Gender : "Be"
-    TAGS ||--o{ LKP_TAG_REQUIRED : "Contain"
-    TAGS ||--o{ TAG_OPTIONAL : "Contain"
-    TAGS ||--o{ POST : "On"
+    USER ||--o{ LKP_SCHOOL : "Be At"}
+    POST ||--o{ TAGS : "Had"}
+    POST ||--o{ COMMENT : "Comment"}
+    LKP_SCHOOL ||--o{ LKP_PROFESSION : "Have Professions"}
+    USER ||--o{ LKP_Gender : "Be"}
+    TAGS ||--o{ LKP_TAG_REQUIRED : "Contain"}
+    TAGS ||--o{ TAG_OPTIONAL : "Contain"}
+    TAGS ||--o{ POST : "On"}
 
     USER {
-        int id_user
+        int id
         bool isadmin
-        int age
+        Datetime birthday
+        string firstName
+        string lastName
         string pseudo
         string email
         string password
-        int number_follow
+        int NumberFollowers
         datetime createAt
         int id_gender_fk
         int id_school_fk
