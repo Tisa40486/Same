@@ -18,6 +18,7 @@ namespace SameApi.App.Controllers
         {
             _mediator = mediator;
         }
+
         [HttpGet("{id}")]
         public async Task<ActionResult<UserResponse?>> GetByIdAsync(int id)
         {
@@ -25,11 +26,12 @@ namespace SameApi.App.Controllers
 
             return Ok(result);
         }
+
         [HttpGet("getAll")]
         public async Task<ActionResult<IEnumerable<UserResponse>>> GetAllAsync()
         {
             var result = await _mediator.Send(new GetAllUserQuery());
-            return Ok(result);
+            return Ok(result);  
         }
 
         [HttpPost]

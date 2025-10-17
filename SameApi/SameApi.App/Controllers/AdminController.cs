@@ -35,11 +35,13 @@ namespace SameApi.App.Controllers
         {
             await _mediator.Send(command);
         }
+
         [HttpDelete("Gender")]
         public async Task DeleteGenderAsync([FromQuery] int id)
         {
             await _mediator.Send(new DeleteGenderCommand { Id = id });
         }
+
         [HttpPost("profession")]
         public async Task CreateProfessionAsync([FromBody] CreateProfessionCommand command)
         {
