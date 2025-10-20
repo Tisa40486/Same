@@ -62,12 +62,12 @@ export default function SignupForm() {
             age: 0,
             password: password,
         }
-        try {
-            await PostUser(User)
-        }
-        catch (e) {
-            console.error(e)
-        }
+        // try {
+        //     await PostUser(User)
+        // }
+        // catch (e) {
+        //     console.error(e)
+        // }
     }
 
     return (

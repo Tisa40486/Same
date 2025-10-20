@@ -61,42 +61,46 @@ const ErrorMessage = styled.div`
 interface UsernameFieldProps {
     value: string
     onChange: (value: string) => void
+    isLogin?: boolean
 }
 
-export default function Username({ value, onChange }: UsernameFieldProps) {
+export default function Username({ value, onChange, isLogin }: UsernameFieldProps) {
+
     const [errors, setErrors] = useState<string[]>([])
 
     const handleBlur = () => {
         const trimmedValue = value.trim()
         const newErrors: string[] = []
 
-        if (trimmedValue === "") {
-            newErrors.push("Required")
-            setErrors(newErrors)
-            return
-        }
+        if (!isLogin) {
+                if (trimmedValue === "") {
+                    newErrors.push("Required")
+                    setErrors(newErrors)
+                    return
+                }
 
-        if (!/[a-zA-Z]/.test(value)) {
-            newErrors.push("Must include a letter")
-        }
+                if (!/[a-zA-Z]/.test(value)) {
+                    newErrors.push("Must include a letter")
+                }
 
-        if (trimmedValue.length < 3 || trimmedValue.length > 20) {
-            newErrors.push("3-20 characters")
-        }
+                if (trimmedValue.length < 3 || trimmedValue.length > 20) {
+                    newErrors.push("3-20 characters")
+                }
 
-        if (reservedWords.includes(trimmedValue.toLowerCase())) {
-            newErrors.push("Reserved by system")
-        }
+                if (reservedWords.includes(trimmedValue.toLowerCase())) {
+                    newErrors.push("Reserved by system")
+                }
 
-        if (specialCharsRegex.test(value)) {
-            newErrors.push("Letters, numbers, - and _ only")
-        }
+                if (specialCharsRegex.test(value)) {
+                    newErrors.push("Letters, numbers, - and _ only")
+                }
 
-        if (/-{2,}/.test(trimmedValue) || /_{2,}/.test(trimmedValue)) {
-            newErrors.push("No consecutive - or _")
+                if (/-{2,}/.test(trimmedValue) || /_{2,}/.test(trimmedValue)) {
+                    newErrors.push("No consecutive - or _")
+                }
+                setErrors(newErrors)
+                }
         }
-        setErrors(newErrors)
-    }
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const valueNoSpaces = e.target.value.replace(/\s/g, '')
@@ -119,7 +123,7 @@ export default function Username({ value, onChange }: UsernameFieldProps) {
                 maxLength={20}
                 hasError={errors.length > 0}
             />
-            {errors.length > 0 && (
+            {!isLogin && errors.length > 0 && (
                 <ErrorContainer>
                     {errors.map((err, i) => (
                         <ErrorMessage key={i}>{err}</ErrorMessage>
