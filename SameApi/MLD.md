@@ -3,14 +3,14 @@ erDiagram
     User {
         int id PK
         bool isAdmin
-        DateTime Birthday
+        DateTime birthday
         string firstName
         string lastName
-        string Pseudo
-        string Email
+        string pseudo
+        string email
         string password
-        int NumberFollowers
-        DateTime CreateAt
+        int numberFollowers
+        DateTime createAt
         int genderId FK
         int schoolId FK
     }
@@ -20,18 +20,18 @@ erDiagram
 
     Gender {
         int id PK
-        string Name
+        string name
     }
 
     School {
         int id PK
-        string Name
+        string name
         int professionId FK
     }
     
     Profession {
         int id PK
-        string Name
+        string name
     }
 
 

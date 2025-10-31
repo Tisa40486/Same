@@ -8,14 +8,11 @@ This API allows clients to perform full CRUD operations on forum entities such a
 
 - Full CRUD for:
   - 🧑 Users
-  - 📌 Threads
   - 💬 Posts
-  - 🗨️ Comments
 - Entity Framework Core with database migrations
 - Swagger UI for interactive API documentation
 - DTOs and AutoMapper for clean data handling
 - CORS support for frontend integration
-- Basic error handling and validation
 
 ---
 ## Database Model
@@ -25,74 +22,102 @@ You can find the detailed MLD diagram [here](./MLD.md).
 ## 🧱 Entities Overview
 
 ### User
-- `id`, `isadmin`, `age`, `pseudo`, `email`, `password`, `number_follow`, `createAt`, `id_gender_fk`, `id_school_fk`, `id_post_fk` 
+- `id`, `isadmin`, `birthday`, `firstName`, `lastName`, `pseudo`, `email`, `password`, `numberFollowers`, `createAt`, `id_gender_fk`, `id_school_fk`
+
+### Post 
+- `id`,
 
 ### Gender
-- `id`, `gender`
+- `id`, `Name`
 
-### Tags
-- `Id`, `createAt`, `tag_required`, `tag_optional`
-### TAG_REQUIRED
-- `Id`, `tag_required`
-  
-### TAG_OPTIONAL
-- `Id`, `tag_optional`
   
 ### SCHOOL
-- `Id`, `name`, `profession`
+- `Id`, `name`, `id_profession_fk`
 
 ### PROFESSION
 - `Id`, `name`
 
-
-### Post
-- `Id`, `ThreadId`, `id_user`, `Content`, `CreatedAt`
-
-### Comment
-- `Id`, `PostId`, `id_user`, `title`, `Content`, `CreatedAt`
-
 ---
 ## 🛠️ Technologies Used
 
-- ASP.NET Core 6 / 7
+- ASP.NET Core 9
 - C#
 - Entity Framework Core
-- SQL Server / SQLite
 - Swagger (Swashbuckle)
 - AutoMapper
 
-## 📁 Project Structure
-
 SameApi:
-  - 🗂️ SameApi.App:
-    - Program.cs
+  - 💻 SameApi.App
+    - 🧭 Controller
+      - 🧩 AdminController.cs
+      - 🧩 UserController.cs
+    - 🚀 Program.cs
 
-  - 🗂️ SameApi.Business:
-    - 📄 SameApiProfile.cs
+  - 🧠 SameApi.Business
+    - 🧱 Admin
+      - 🛠️ Command
+        - 🧩 CreateGenderCommand.cs
+        - 🧩 CreateProfessionCommand.cs
+        - 🧩 DeleteGenderCommand.cs
+      - 🔍 Query
+        - 🧩 GetAllGenderQuery.cs
+        - 🧩 GetAllProfessionQuery.cs
 
-  - 🗂️ SameApi.Data:
-    - 📁 DbContexts:
-      - 📄 BaseDbContext
-      - 📄 IBaseDbContext
-    - 📁 Model:
-      - 📄 IModelDao.cs
-    - 📁 Repository:
-      - 📄 BaseRepository
-      - 📄 IBaseRepository
+    - 👥 User
+      - 🛠️ Command
+        - 🧩 CreateUserCommand.cs
+        - 🧩 DeleteUserCommand.cs
+        - 🧩 UpdateUserCommand.cs
+      - 🔍 Query
+        - 🧩 GetAllUserQuery.cs
+        - 🧩 GetUserByIdQuery.cs
+    - 🧭 SameApiProfile.cs
 
-  - 🗂️ SameApi.Db:
-    - 📁 DbContexts:
-      - 📄 SameApiDbContext.cs
-      - 📄 ISameApiDbContext.cs
-    - 📁 UnitOfWork:
-      - 📄 SameApiUnitOfWork.cs
-      - 📄 ISameApiUnitOfWork.cs
+  - 🗄️ SameApi.Data
+    - 🗃️ DbContexts
+      - 🧩 BaseDbContext.cs
+      - 🧩 IBaseDbContext.cs
+    - 🧠 Model
+      - 🧾 IModelDao.cs
+    - 📚 Repository
+      - 🧩 BaseRepository.cs
+      - 🧩 IBaseRepository.cs
 
-  - 🗂️ SameApi.Dto: 
+  - 🏗️ SameApi.Db
+    - 🗃️ DbContexts
+      - 🧩 SameApiDbContext.cs
+      - 🧩 ISameApiDbContext.cs
+    - ⏱️ Migrations
+      - 🧾 20251005003003_1.0.0.cs
+      - 🧾 20251005003732_1.0.1.cs
+    - 📚 Repository
+      - 🧩 IGenderRepository.cs
+      - 🧩 IProfessionRepository.cs
+      - 🧩 ISchoolRepository.cs
+      - 🧩 IUserRepository.cs
+    - ⚙️ Implementation
+      - 🧩 GenderRepository.cs
+      - 🧩 ProfessionRepository.cs
+      - 🧩 SchoolRepository.cs
+      - 🧩 UserRepository.cs
+    - 🔗 UnitOfWork
+      - 🧩 SameApiUnitOfWork.cs
+      - 🧩 ISameApiUnitOfWork.cs
 
-  - 🗂️ SameApi.Model: 
+  - 📦 SameApi.Dto
+    - 🧾 GenderInput.cs
+    - 🧾 GenderResponse.cs
+    - 🧾 ProfessionInput.cs
+    - 🧾 UserInput.cs
 
----
+  - 🧱 SameApi.Model
+    - 🧩 LKP
+      - 🧾 LKP_GenderDao.cs
+      - 🧾 LKP_ProfessionDao.cs
+      - 🧾 LKP_SchoolDao.cs
+    - 👤 PostDao.cs
+    - 👥 UserDao.cs
+
 
 ## ⚙️ Getting Started
 
@@ -107,7 +132,9 @@ SameApi:
 1. **Clone the repository:**
    ```bash
    git clone https://github.com/Tisa40486/Same.git
-   
+
+
+
 2. **API Endpoints**
    
 | Method | Endpoint             | Description         |
