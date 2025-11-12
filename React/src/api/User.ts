@@ -1,12 +1,19 @@
 import {apiConfig, getHeaders} from "./apiConfig.ts";
 
 export type PostUserProps = {
-    "pseudo": string, // TODO : rename to username
+    "id": number,
+    "isAdmin": boolean,
+    "birthday": string,
+    "firstName": string,
+    "lastName": string,
+    "pseudo": string,
     "email": string,
-    // TODO : first name
-    // TODO : last name
-    "age": 0,           // TODO : age => date of birth
     "password": string,
+    "numberFollowers": number,
+    "createAt": string,
+    "genderId": number,
+    "schoolId": number,
+    "professionId": number
 }
 
 export const PostUser = async (param:PostUserProps) => {
@@ -16,4 +23,5 @@ export const PostUser = async (param:PostUserProps) => {
         headers: {...headers},
         body: JSON.stringify(param),
     });
+    return response;
 }

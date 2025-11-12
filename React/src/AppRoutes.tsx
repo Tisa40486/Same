@@ -29,9 +29,11 @@ export const AppRoutes = () => {
     ]
     return (
         <Routes>
-            {initRoutes().map(({ key, ...routeConfig }) => (
-                <Route key={key} {...routeConfig} />
-            ))}
+            <>
+                {initRoutes().map(({ key, ...routeConfig }) => (
+                    <Route key={key} {...routeConfig} />
+                ))}
+            </>
         </Routes>
     )
 }
