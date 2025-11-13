@@ -81,7 +81,7 @@ export default function SignupForm() {
     }
 
     return (
-        <StyledForm method="post">
+        <StyledForm method="post" onSubmit={HandleSubmit}>
             <Username value={username} onChange={setUsername}/>
             <EmailField value={email} onChange={setEmail}/>
             <MultiFieldRow>

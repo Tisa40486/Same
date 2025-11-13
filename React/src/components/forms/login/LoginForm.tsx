@@ -2,7 +2,6 @@ import { useState } from 'react'
 import styled from '@emotion/styled'
 import Username from "../signup/Username.tsx"
 import PasswordFields from "./PasswordField.tsx"
-import {PostUser, type PostUserProps} from '../../../api/User.ts'
 
 const StyledForm = styled.form`
     width: 100%;

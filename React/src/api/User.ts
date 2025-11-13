@@ -18,7 +18,7 @@ export type PostUserProps = {
 
 export const PostUser = async (param:PostUserProps) => {
     const headers = getHeaders()
-    const response = await fetch(apiConfig.apiUrl + "/user", {
+    const response = await fetch(apiConfig.apiUrl + "/user/create", {
         method: "POST",
         headers: {...headers},
         body: JSON.stringify(param),

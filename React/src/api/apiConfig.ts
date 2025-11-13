@@ -1,5 +1,5 @@
 export const apiConfig = {
-    apiUrl: import.meta.env.API_URL,
+    apiUrl: import.meta.env.VITE_API_URL as string,
 }
 
 // header of the request => indicate body will be in json
