@@ -34,24 +34,12 @@ const StyledInput = styled.input<{ hasError: boolean }>`
 
 interface PasswordFieldsProps {
     passwordValue: string
-    onPasswordChange: (value: string) => void
 }
 
 export default function PasswordFields({
                                            passwordValue,
-                                           onPasswordChange,
                                        }: PasswordFieldsProps) {
-    const [passwordErrors, setPasswordErrors] = useState<string[]>([])
-
-    // const handlePasswordBlur = () => {
-    //     const trimmedValue = passwordValue.trim()
-    //     const newErrors: string[] = []
-    // }
-    //
-    // const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    //     onPasswordChange(e.target.value)
-    //     setPasswordErrors([])
-    // }
+    const [passwordErrors] = useState<string[]>([])
 
     return (
         <>
@@ -60,8 +48,6 @@ export default function PasswordFields({
                 <StyledInput
                     type="password"
                     value={passwordValue}
-                    // onChange={handlePasswordChange}
-                    // onBlur={handlePasswordBlur}
                     placeholder="Password"
                     hasError={passwordErrors.length > 0}
                 />
