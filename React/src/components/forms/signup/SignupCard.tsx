@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 import styled from '@emotion/styled'
 import SignupForm from './SignupForm'
 
-const Card = styled.div`
+export const Card = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import {FormEvent, useState} from 'react'
 import styled from '@emotion/styled'
 // import { useForm } from 'react-hook-form'
 import Username from "./Username.tsx"
@@ -7,6 +7,7 @@ import FirstNameField from "./FirstNameField.tsx"
 import LastNameField from "./LastNameField.tsx"
 import BirthdateField from "./BirthdateField.tsx"
 import PasswordFields from "./PasswordFields.tsx"
+import {PostUser, type PostUserProps} from '../../../api/User.ts'
 
 const StyledForm = styled.form`
     width: 100%;
@@ -54,8 +55,33 @@ export default function SignupForm() {
     const [password, setPassword] = useState('')
     const [confirmPassword, setConfirmPassword] = useState('')
 
+    const HandleSubmit = async (e:FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        const User:PostUserProps = {
+            id: 0,
+            isAdmin: false,
+            birthday: birthdate.toString(),
+            firstName: firstName,
+            lastName: lastName,
+            pseudo: username,
+            email: email,
+            password: password,
+            numberFollowers: 0,
+            createAt: "2025-11-12T20:38:12.278Z",
+            genderId: 0,
+            schoolId: 0,
+            professionId: 0
+        }
+        try {
+            await PostUser(User)
+        }
+        catch (e) {
+            console.error(e)
+        }
+    }
+
     return (
-        <StyledForm method="post">
+        <StyledForm method="post" onSubmit={HandleSubmit}>
             <Username value={username} onChange={setUsername}/>
             <EmailField value={email} onChange={setEmail}/>
             <MultiFieldRow>
@@ -74,7 +100,7 @@ export default function SignupForm() {
                 email={email}
                 birthdate={birthdate}
             />
-            <SubmitButton type="submit">Submit</SubmitButton>
+            <SubmitButton onClick={() => HandleSubmit} type="submit">Submit</SubmitButton>
         </StyledForm>
     )
 }
