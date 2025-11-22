@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import HomePage from '../components/home/HomePage';
 import HeaderHomePage from '../components/home/HeaderHomePage';
+import HomePost from '../components/home/HomePost';
 
 export default function HomeView() {
     return (
@@ -19,6 +20,7 @@ export default function HomeView() {
             >
                 <HomePage />
                 <h1>Home</h1>
+                <HomePost />
                 <Link to="/signup">Link to Signup Page</Link>
             </div>
         </>
