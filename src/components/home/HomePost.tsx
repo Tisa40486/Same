@@ -14,8 +14,8 @@ export default function HomePost(){
         flex-direction: column;
         margin-top: 20px;
         border-radius: 20px;
-        width: 500px;
-        background: ${theme.glass.bg};
+        width: 470px;
+        background: ${theme.glass.bgPost};
         box-shadow: ${theme.shadow.md};
         overflow: hidden;
     `;

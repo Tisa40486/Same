@@ -39,49 +39,24 @@ export default function HeaderHomePage(){
     width: 50px;
     height: 50px;`
 
-//     const headerSection = css`
-//   background-color: ${theme.glass.bgHeader};
-//   display: flex;
-//   justify-content: space-between;
-//   align-items: center;
-//   border-bottom-left-radius: 20px;
-//   border-bottom-right-radius: 20px;
-//   padding: 0 24px;
-//   height: 70px;
-// `
-
-// const imgCss = css`
-//   padding-top: 10px;
-//   width: 150px;
-//   padding-left: 20px;
-//   border-top-left-radius: 50px;
-//   border-top-right-radius: 35px;
-//   border-bottom-left-radius: 0;
-//   border-bottom-right-radius: 0;
-// `
-
-// const accountLogo = css`
-//   width: 50px;
-//   height: 50px;
-// `
+    const headerSection = css`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-right: 20px;
+    `
     
     return(
         <>
-                <header className="home">
-                    <nav>
-                        <section style={{backgroundColor: theme.glass.bgHeader}}>
-                            <img src={SamePrimaryLogo} alt="Same Primary Logo" css={imgCss} />
-                            
-                            <a href="#"><img src={SameAccountLogo} alt="Same Account Logo" css={accountLogo}/></a>
-                        </section>
-                    </nav>
-                
+            <header className="home">
+                <nav>
+                    <section css={headerSection} style={{backgroundColor: theme.glass.bgHeader}}>
+                        <img src={SamePrimaryLogo} alt="Same Primary Logo" css={imgCss} />
+                        
+                        <a href="#"><img src={SameAccountLogo} alt="Same Account Logo" css={accountLogo}/></a>
+                    </section>
+                </nav>
             </header>
-
-            {/* <section css={headerSection}>
-  <img src={SamePrimaryLogo} alt="Same Primary Logo" css={imgCss} />
-  <a href="#"><img src={SameAccountLogo} alt="Same Account Logo" css={accountLogo}/></a>
-</section> */}
         </>   
     )
 }
