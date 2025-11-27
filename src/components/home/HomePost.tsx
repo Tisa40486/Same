@@ -6,6 +6,7 @@ import { theme } from '../../styles/theme';
 import SameLikeLogo from '../../assets/img_home_page/same-like-logo.png';
 import SameCommentLogo from '../../assets/img_home_page/same-comment-logo.png'
 import SameSendLogo from '../../assets/img_home_page/same-send-logo.png'
+import SamePostLogo from '../../assets/img_home_page/same-post-logo.png'
 
 export default function HomePost(){
 
@@ -46,12 +47,10 @@ export default function HomePost(){
     `
 
     const imgLogo = css`
-        width: 200px;
-        height: 100px;
-        padding-top: 10px;
-        padding-left: 10px;
+        width: 230px;
+        height: 70px;
         display: flex;
-        gap: 15px;
+        gap: 7px;
     `
 
     const text = css`
@@ -64,29 +63,43 @@ export default function HomePost(){
         box-shadow: ${theme.glass.focusShadow};
     `
 
+      const postButton = css`
+        position: fixed;
+        right: 40px;
+        bottom: 40px;
+    `;
+
     return(
-        <main css={post}>
-            <section css={headerCss}>
-                <a href=""><img src={SameAccountLogo} alt="Account" css={avatarCss} /></a>
-                <h1>Text</h1>
-            </section>
-            <section>
-                <img src={ImgExPost} alt="Example Post Image" />
-            </section>
-            <section css={imgLogo}>
-                <article>
-                    <a href=""><img src={SameLikeLogo} alt="Same Like Logo" /></a>  
+        <>
+            <main css={post}>
+                <section css={headerCss}>
+                    <a href=""><img src={SameAccountLogo} alt="Account" css={avatarCss} /></a>
+                    <h1>Text</h1>
+                </section>
+                <section>
+                    <img src={ImgExPost} alt="Example Post Image" />
+                </section>
+                <section css={imgLogo}>
+                    <article>
+                        <a href=""><img src={SameLikeLogo} alt="Same Like Logo" /></a>  
+                    </article>
+                    <article>
+                        <a href=""><img src={SameCommentLogo} alt="Same Comment Logo" /></a>
+                    </article>
+                    <article>
+                        <a href=""><img src={SameSendLogo} alt="Same Send Logo" /></a>
+                    </article>
+                </section>
+                <article css={text}>
+                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reprehenderit veritatis facere totam illum dignissimos enim tenetur, doloremque obcaecati dolore recusandae officiis exercitationem repellat natus sit illo quia deleniti assumenda eos!
                 </article>
-                <article>
-                    <a href=""><img src={SameCommentLogo} alt="Same Comment Logo" /></a>
-                </article>
-                <article>
-                    <a href=""><img src={SameSendLogo} alt="Same Send Logo" /></a>
-                </article>
-            </section>
-            <article css={text}>
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reprehenderit veritatis facere totam illum dignissimos enim tenetur, doloremque obcaecati dolore recusandae officiis exercitationem repellat natus sit illo quia deleniti assumenda eos!
+
+
+            </main>
+
+            <article css={postButton}>
+                <a href=""><img src={SamePostLogo} alt="Same Post Logo" /></a>
             </article>
-        </main>
+        </>
     );
 }
