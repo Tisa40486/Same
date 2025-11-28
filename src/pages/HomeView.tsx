@@ -25,8 +25,9 @@ export default function HomeView() {
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: '150px 1fr 250px', // 3 colonnes
+            gridTemplateColumns: '200px 1fr 200px', // 3 colonnes
             marginTop: '1rem',
+            paddingLeft: '1rem',
           }}
         >
           {/* Colonne gauche : collée au bord */}

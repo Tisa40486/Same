@@ -67,6 +67,7 @@ export default function HomePost(){
         position: fixed;
         right: 40px;
         bottom: 40px;
+        padding-bottom: 20px;
     `;
 
     return(

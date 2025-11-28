@@ -9,7 +9,21 @@ export default function TagList(){
         flex-direction: column;
         text-align: center;
         align-self: flex-start;
-        margin-left: 2rem;
+        justify-content: center;
+    `
+
+    const cardCss = css`
+        background: white;
+        box-shadow: ${theme.shadow.md};
+        border-radius: 20px;
+        padding: 16px 24px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        backdrop-filter: blur(12px);
+        width: 100%;
+        max-width: 260px;
+        margin: 0 auto; 
     `
 
     const buttonsWrapperCss = css`
@@ -17,7 +31,7 @@ export default function TagList(){
         flex-direction: column;
         gap: 10px;
         padding-bottom: 10px;
-        align-items: flex-start;
+        align-items: center;
     `
 
     const groupMargin = css`
@@ -43,19 +57,21 @@ export default function TagList(){
 
     return(
         <section css={tagCss}>
-            <article>
-                <h2 css={titleCss}>Tags</h2>
-                <section css={[buttonsWrapperCss, groupMargin]}>
-                    <button css={tagButtonCss("#003a5c")}>School</button>
-                    <button css={tagButtonCss("#a7b4c5")}>School</button>
-                    <button css={tagButtonCss("#4b1324")}>School</button>
-                    <button css={tagButtonCss("#6f3b4c")}>School</button>
-                </section>
-            </article>
-            <article css={buttonsWrapperCss}>
-                <button css={tagButtonCss("#a7b4c5")}>Notification</button>
-                <button css={tagButtonCss("#6f3b4c")}>Support</button>
-            </article>
+            <div css={cardCss}>
+                <article>
+                    <h2 css={titleCss}>Tags</h2>
+                    <section css={[buttonsWrapperCss, groupMargin]}>
+                        <button css={tagButtonCss("#003a5c")}>School</button>
+                        <button css={tagButtonCss("#a7b4c5")}>School</button>
+                        <button css={tagButtonCss("#4b1324")}>School</button>
+                        <button css={tagButtonCss("#6f3b4c")}>School</button>
+                    </section>
+                </article>
+                <article css={buttonsWrapperCss}>
+                    <button css={tagButtonCss("#a7b4c5")}>Notification</button>
+                    <button css={tagButtonCss("#6f3b4c")}>Support</button>
+                </article>
+            </div> 
         </section>
     )
 }

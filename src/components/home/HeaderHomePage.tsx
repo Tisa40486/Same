@@ -23,16 +23,13 @@ export default function HeaderHomePage(){
     `
 
     const imgCss = css`
-        padding-top: 10px;
-        width: 150px;
-        padding-left: 20px;
-        border-top-left-radius: 50px;
-        border-top-right-radius: 35px;
-        border-bottom-left-radius: 0;
-        border-bottom-right-radius: 0;
-        display: flex;
-        flex-direction : row;
-        justify-content: space-bewteen;
+        display: block;
+        widht: 150px;
+        max-widht:100%;
+        height: 120px;
+        margin: 10px auto 0;
+        margin-left: 12px;
+
     `
 
     const accountLogo = css`
