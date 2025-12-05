@@ -1,16 +1,15 @@
 import {apiConfig, getHeaders} from "./apiConfig.ts";
 
 export type PostUserProps = {
-    "id": number,
-    "isAdmin": boolean,
-    "birthday": string,
+    "isActive": boolean,
+    "birthdate": unknown,
+    "pseudo": string,
     "firstName": string,
     "lastName": string,
-    "pseudo": string,
     "email": string,
     "password": string,
     "numberFollowers": number,
-    "createAt": string,
+    "createAt": unknown,
     "genderId": number,
     "schoolId": number,
     "professionId": number
