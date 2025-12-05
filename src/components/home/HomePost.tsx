@@ -7,10 +7,22 @@ import SameLikeLogo from '../../assets/img_home_page/same-like-logo.png';
 import SameCommentLogo from '../../assets/img_home_page/same-comment-logo.png'
 import SameSendLogo from '../../assets/img_home_page/same-send-logo.png'
 import SamePostLogo from '../../assets/img_home_page/same-post-logo.png'
+import { useState, useEffect } from "react";
+
+interface Post {
+    id: number;
+    title: string | null;
+    content: string | null;
+    likes_count: number | null;
+    comments_count: number | null;
+    userDaoId: number | null;
+}
 
 export default function HomePost(){
 
-    const post = css`
+    const [posts, setPosts] = useState<Post[]>([]);
+
+    const postCss = css`
         display: flex;
         flex-direction: column;
         margin-top: 20px;
@@ -70,37 +82,68 @@ export default function HomePost(){
         padding-bottom: 20px;
     `;
 
+    async function fnGetPost(userId: string | null)
+    {
+        if(!userId) return [];
+
+        try{
+            const reponse = await fetch("https://sameapi-e8dmf9f6a7h2gkbh.switzerlandnorth-01.azurewebsites.net//api/post/getallbyuser/${userId}", {
+                method: "GET",
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8",
+                },
+            })
+            const data = await reponse.json();
+            console.log(data);
+            
+            return data;
+
+        } catch(error) {
+            console.log(error);
+        }
+    }
+
+    useEffect(() => {
+        const userId = localStorage.getItem("userId");
+    
+        async function load() {
+            const posts = await fnGetPost(userId);
+            setPosts(posts);
+        }
+    
+        load();
+    }, []);    
+    
+
     return(
         <>
-            <main css={post}>
-                <section css={headerCss}>
-                    <a href=""><img src={SameAccountLogo} alt="Account" css={avatarCss} /></a>
-                    <h1>Text</h1>
-                </section>
-                <section>
-                    <img src={ImgExPost} alt="Example Post Image" />
-                </section>
-                <section css={imgLogo}>
-                    <article>
-                        <a href=""><img src={SameLikeLogo} alt="Same Like Logo" /></a>  
-                    </article>
-                    <article>
-                        <a href=""><img src={SameCommentLogo} alt="Same Comment Logo" /></a>
-                    </article>
-                    <article>
-                        <a href=""><img src={SameSendLogo} alt="Same Send Logo" /></a>
-                    </article>
-                </section>
-                <article css={text}>
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reprehenderit veritatis facere totam illum dignissimos enim tenetur, doloremque obcaecati dolore recusandae officiis exercitationem repellat natus sit illo quia deleniti assumenda eos!
-                </article>
+           {posts.map((post) => (
+                <main key={post.id} css={postCss}>
+                    <section css={headerCss}>
+                        <img src={SameAccountLogo} alt="Account" css={avatarCss} />
+                        <h1>{post.title}</h1>
+                    </section>
 
+                    <section>
+                        <img src={ImgExPost} alt="Post" />
+                    </section>
 
-            </main>
+                    <section css={imgLogo}>
+                        <img src={SameLikeLogo} alt="Like" />
+                        <img src={SameCommentLogo} alt="Comment" />
+                        <img src={SameSendLogo} alt="Send" />
+                    </section>
+
+                    <article css={text}>
+                        {post.content}
+                    </article>
+                </main>
+            ))}
 
             <article css={postButton}>
-                <a href=""><img src={SamePostLogo} alt="Same Post Logo" /></a>
+                <img src={SamePostLogo} alt="Create Post" />
             </article>
+
         </>
     );
 }
