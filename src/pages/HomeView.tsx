@@ -18,6 +18,7 @@ export default function HomeView() {
           flexDirection: 'column',
           backgroundColor: theme.glass.bgHomePage,
           paddingTop: '2rem',
+          overflow: 'auto',
         }}
       >
 

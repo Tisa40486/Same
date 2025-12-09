@@ -21,7 +21,7 @@ export const homePageStyle = (theme: Theme) => css`
         background-color: ${theme.colors.bgPrimary};
         font-size: ${theme.fontSize.sm};
         backdrop-filter: blur(4px);
-        overflow: hidden;
+        overflow-y: auto;
     }
 
     h1 {

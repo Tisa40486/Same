@@ -23,14 +23,14 @@ export default function HomePost(){
     const [posts, setPosts] = useState<Post[]>([]);
 
     const postCss = css`
-        display: flex;
-        flex-direction: column;
-        margin-top: 20px;
-        border-radius: 20px;
-        width: 470px;
-        background: ${theme.glass.bgPost};
-        box-shadow: ${theme.shadow.md};
-        overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    width: 420px;                   /* réduit un peu */
+    margin: 20px auto;              /* CENTRE la carte */
+    border-radius: 20px;
+    background: ${theme.glass.bgPost};
+    box-shadow: ${theme.shadow.md};
+    overflow: hidden;
     `;
 
     const headerCss = css`
@@ -38,8 +38,7 @@ export default function HomePost(){
         display: flex;
         align-items: center;
         padding: 12px 20px;
-        border-top-left-radius: 20px;
-        border-top-right-radius: 20px;
+        gap: 12px;
     `;
 
     const avatarCss = css`
@@ -59,10 +58,11 @@ export default function HomePost(){
     `
 
     const imgLogo = css`
-        width: 230px;
-        height: 70px;
+        background: ${theme.glass.focusShadow};
         display: flex;
-        gap: 7px;
+        align-items: center;
+        padding: 12px 20px;
+        gap: 12px;
     `
 
     const text = css`
@@ -87,7 +87,7 @@ export default function HomePost(){
         if(!userId) return [];
 
         try{
-            const reponse = await fetch("https://sameapi-e8dmf9f6a7h2gkbh.switzerlandnorth-01.azurewebsites.net//api/post/getallbyuser/${userId}", {
+            const reponse = await fetch(`https://sameapi-e8dmf9f6a7h2gkbh.switzerlandnorth-01.azurewebsites.net/api/post/getallbyuser/${userId}`, {
                 method: "GET",
                 headers: {
                     "Content-type": "application/json; charset=UTF-8",
@@ -105,14 +105,16 @@ export default function HomePost(){
 
     useEffect(() => {
         const userId = localStorage.getItem("userId");
-    
+
         async function load() {
             const posts = await fnGetPost(userId);
+            console.log("📌 Résultat API :", posts);
             setPosts(posts);
         }
-    
+
         load();
-    }, []);    
+    }, []);
+  
     
 
     return(

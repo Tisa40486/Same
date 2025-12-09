@@ -20,10 +20,10 @@ export const globalStyle = (theme: Theme) => css`
         color: ${theme.colors.textWhite};
         background-color: ${theme.colors.bgPrimary};
         font-size: ${theme.fontSize.sm};
-        display: grid;
-        place-items: center;
+        display: flex;
+        flex-direction: column;
         backdrop-filter: blur(4px);
-        overflow: hidden;
+        overflow-y: auto;
     }
 
     h1 {
