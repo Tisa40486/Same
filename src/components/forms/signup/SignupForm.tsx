@@ -58,7 +58,6 @@ export default function SignupForm() {
     const HandleSubmit = async (e:FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         const User:PostUserProps = {
-            isActive: false,
             birthdate: new Date(),
             pseudo: username,
             firstName: firstName,
@@ -66,7 +65,6 @@ export default function SignupForm() {
             email: email,
             password: password,
             numberFollowers: 0,
-            createAt: new Date(),
             genderId: 1,
             schoolId: 1,
             professionId: 1
