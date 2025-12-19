@@ -1,4 +1,4 @@
-import {type FormEvent, useState} from 'react'
+import {FormEvent, useState} from 'react'
 import styled from '@emotion/styled'
 // import { useForm } from 'react-hook-form'
 import Username from "./Username.tsx"
@@ -58,16 +58,15 @@ export default function SignupForm() {
     const HandleSubmit = async (e:FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         const User:PostUserProps = {
-            birthdate: new Date(),
-            pseudo: username,
+            birthdate: `${birthdate.year}-${birthdate.month.padStart(2, '0')}-${birthdate.day.padStart(2, '0')}`,
             firstName: firstName,
             lastName: lastName,
+            pseudo: username,
             email: email,
             password: password,
-            numberFollowers: 0,
-            genderId: 1,
-            schoolId: 1,
-            professionId: 1
+            genderId: 0,
+            schoolId: 0,
+            professionId: 0
         }
         try {
             await PostUser(User)
